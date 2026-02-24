@@ -1,25 +1,26 @@
 # 🧠 Ejercicio 2.1: Prototipo RAG Industrial
 ### Recuperación Aumentada por Generación para Manuales Técnicos
 
-Sistema de inteligencia artificial diseñado para indexar y consultar documentación técnica compleja de plantas industriales, mitigando alucinaciones y proporcionando respuestas basadas en evidencias.
+Sistema de inteligencia artificial diseñado para indexar y consultar documentación técnica compleja de plantas industriales.
 
-## � Inicio Rápido
+## 🚀 Inicio Rápido
 
-1. **Clonar el repositorio**:
+1. **Clonar**:
    ```bash
    git clone https://github.com/AbyssIzangamer17/Ejercicio_2_1_RAG.git
    cd Ejercicio_2_1_RAG
    ```
 
-2. **Ejecución del Prototipo**:
-   Asegúrate de tener Python instalado y ejecuta:
+2. **Ejecutar**:
    ```powershell
    python rag_prototype.py
    ```
 
-## �🛠️ Funcionalidades
-- **Recuperación Semántica**: Simulación de búsqueda de información en manuales de mantenimiento y seguridad.
-- **Generación Contextual**: Respuestas dinámicas basadas en fuentes recuperadas.
+## � Visualización de Resultados
+Al ejecutar el script, verás en la terminal:
+- **Usuario**: Consultas sobre mantenimiento o errores (ej. F01).
+- **Agente RAG**: Respuesta generada basándose exclusivamente en el "contexto de manuales" recuperado.
+- También puedes consultar el informe académico en `Documentacion_RAG.docx`.
 
 ## 👤 Autor
 **Izan Urios** - 3R de Automatización y Robótica Industrial.
