@@ -1,16 +1,16 @@
-# 🧠 Ejercicio 2.1: RAG Research Notebook
-### Investigación y Generación Aumentada por Recuperación Industrial
+# 🧠 Ejercicio 2.1: RAG Research Notebook v3.0
+### Sistema de Investigación Basado en Fuentes Industrial
 
-Sistema inspirado en la arquitectura **NotebookLM** para la investigación técnica profunda de manuales industriales mediante agentes de IA.
+Este proyecto implementa una arquitectura **NotebookLM** adaptada al entorno industrial, permitiendo un manejo dinámico y profundo del conocimiento técnico.
+
+## 🚀 Funcionalidades Clave
+- **Gestión de Fuentes**: Capacidad real de **añadir y eliminar fuentes** desde el panel lateral, actualizando el índice de conocimiento al instante.
+- **IA Analítica**: El motor puede interpretar consultas variadas incluso si la información no está literal, proporcionando un razonamiento flexible.
+- **Citas Automáticas**: Cada respuesta vincula el documento fuente original, garantizando la trazabilidad y veracidad de la información.
+- **Chips de Insight**: Generación de resúmenes y guías rápidas basadas en el contexto cargado.
 
 ## 🚀 Inicio Rápido
-Inicia la herramienta de investigación interactiva:
-👉 **[Abrir Research Notebook](research_notebook.html)**
-
-## 📋 Especificaciones
-- **Estado del Arte**: Investigación sobre las tendencias RAG en 2025 (GraphRAG, Agentic RAG).
-- **Citas de Fuentes**: El sistema vincula cada respuesta al documento técnico original para garantizar la trazabilidad y eliminar alucinaciones.
-- **Prototipo**: Interfaz limpia tipo Google Research para operarios de planta.
+👉 **[Abrir Research Notebook v3.0](research_notebook.html)**
 
 ## 👤 Autor
 **Izan Urios** - 3R de Automatización y Robótica Industrial.

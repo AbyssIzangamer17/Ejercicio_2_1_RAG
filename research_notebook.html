@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>NotebookLM Industrial v2.0 - IA Brain</title>
+    <title>NotebookLM Industrial v3.0 | Research Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,6 +11,7 @@
             --sidebar: #ffffff;
             --accent: #1a73e8;
             --border: #e2e8f0;
+            --text: #202124;
         }
 
         body {
@@ -20,10 +21,12 @@
             display: flex;
             height: 100vh;
             overflow: hidden;
+            color: var(--text);
         }
 
+        /* Sidebar - Sources Management */
         .sidebar {
-            width: 320px;
+            width: 340px;
             background: var(--sidebar);
             border-right: 1px solid var(--border);
             padding: 25px;
@@ -33,79 +36,114 @@
 
         .sidebar h2 {
             font-size: 0.85rem;
-            color: #64748b;
+            color: #5f6368;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        .doc-list {
+        .source-list {
             flex: 1;
             overflow-y: auto;
         }
 
-        .source-pill {
+        .source-item {
             background: #f1f5f9;
-            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 12px;
             margin-bottom: 12px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
             font-size: 0.85rem;
+            border: 1px solid transparent;
             transition: 0.2s;
-            cursor: pointer;
         }
 
-        .source-pill:hover {
+        .source-item:hover {
             border-color: var(--accent);
-            background: #fdfdfd;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
-        .upload-area {
-            border: 2px dashed var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
+        .source-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow: hidden;
+        }
+
+        .source-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .btn-remove {
+            background: none;
+            border: none;
             color: #94a3b8;
-            font-size: 0.8rem;
             cursor: pointer;
+            padding: 4px;
+            font-size: 1.1rem;
+        }
+
+        .btn-remove:hover {
+            color: #ef4444;
+        }
+
+        .upload-zone {
+            border: 2px dashed var(--border);
+            border-radius: 14px;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #64748b;
+            cursor: pointer;
+            margin-top: 15px;
             transition: 0.2s;
         }
 
-        .upload-area:hover {
+        .upload-zone:hover {
             border-color: var(--accent);
             color: var(--accent);
         }
 
+        /* Main Area - NotebookLM Experience */
         .main {
             flex: 1;
             display: flex;
             flex-direction: column;
-            width: 100%;
+            background: white;
             position: relative;
-            background: #ffffff;
         }
 
-        .chat {
+        .header {
+            padding: 15px 40px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-area {
             flex: 1;
-            padding: 40px 100px;
+            padding: 40px 80px;
             overflow-y: auto;
             scroll-behavior: smooth;
         }
 
         .msg {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            max-width: 850px;
             line-height: 1.7;
-            max-width: 800px;
-            animation: fadeIn 0.3s;
+            animation: slideUp 0.3s ease;
         }
 
-        @keyframes fadeIn {
+        @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(15px);
             }
 
             to {
@@ -114,46 +152,73 @@
             }
         }
 
-        .user {
-            font-weight: 600;
-            font-size: 1.15rem;
+        .msg-user {
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-top: 40px;
             color: #1e293b;
         }
 
-        .ai {
+        .msg-ai {
             background: #f8fafc;
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 24px;
+            padding: 30px;
             border: 1px solid #f1f5f9;
-            color: #334155;
-            position: relative;
         }
 
-        .citation {
-            display: inline-block;
+        .citations {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .citation-chip {
             background: #e0e7ff;
             color: #4338ca;
             font-size: 0.7rem;
             font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-right: 8px;
-            vertical-align: middle;
+            padding: 2px 10px;
+            border-radius: 6px;
         }
 
-        .input-wrapper {
-            padding: 30px 100px;
+        /* Insights / Quick Actions */
+        .insights {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .chip {
             background: white;
-            border-top: 1px solid var(--border);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #5f6368;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .chip:hover {
+            border-color: var(--accent);
+            background: #f1f5f9;
+            color: var(--accent);
+        }
+
+        /* Input Bar */
+        .input-wrapper {
+            padding: 20px 80px 40px;
+            background: linear-gradient(transparent, white 30%);
         }
 
         .input-bar {
+            background: #f1f3f4;
+            border-radius: 30px;
+            padding: 10px 24px;
             display: flex;
             gap: 15px;
-            align-items: center;
-            background: #f1f5f9;
-            border-radius: 30px;
-            padding: 8px 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         input {
@@ -161,12 +226,11 @@
             background: transparent;
             border: none;
             outline: none;
-            padding: 10px;
+            padding: 10px 0;
             font-size: 1rem;
-            color: #1e293b;
         }
 
-        .send {
+        .btn-send {
             background: var(--accent);
             color: white;
             border: none;
@@ -177,87 +241,162 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 
 <body>
     <div class="sidebar">
-        <h2>Fuentes de la Libreta</h2>
-        <div class="doc-list" id="doc-list">
-            <div class="source-pill">📄 Manual_Siemens_S7.pdf</div>
-            <div class="source-pill">📄 Protocolo_Emergencia_V2.docx</div>
+        <h2>Fuentes</h2>
+        <div class="source-list" id="sourceList">
+            <!-- Sources will be rendered here -->
         </div>
-        <div class="upload-area" onclick="simulateUpload()">
-            + Subir nueva fuente (PDF, DOCX, TXT)
-            <div id="uploading" style="display:none; margin-top:10px; color:var(--accent);">Analizando documento...
-            </div>
+
+        <div class="upload-zone" onclick="addSourceSim()">
+            <strong>+ Añadir fuente</strong><br>
+            PDF, Texto, Copiar/Pegar
+        </div>
+
+        <div style="margin-top: 20px; border-top: 1px solid var(--border); padding-top: 20px;">
+            <div class="chip" style="width: 100%; text-align: center; margin-bottom: 10px;"
+                onclick="generateNotebookGuide()">Guía de la libreta</div>
+            <p style="font-size: 0.7rem; color: #94a3b8; text-align: center;">Ecosistema IA de Izan Urios</p>
         </div>
     </div>
+
     <div class="main">
-        <div class="chat" id="chat">
-            <div class="msg ai">
-                Hola Izan. He indexado tus manuales de automatización. Mi IA está activa y puede interpretar consultas
-                complejas, resumir protocolos o diagnosticar errores basándose en las fuentes. ¿Qué deseas investigar?
+        <div class="header">
+            <h1 style="font-size: 1.2rem; margin: 0;">Research Notebook <span style="font-weight: 300; opacity: 0.5;">|
+                    Industrial v3.0</span></h1>
+            <div id="status" style="font-size: 0.75rem; color: #10b981;">● IA Lista</div>
+        </div>
+
+        <div class="chat-area" id="chat">
+            <div class="msg msg-ai">
+                Hola Izan. He indexado tus documentos y estoy listo para generar "insights" industriales. Puedes subir
+                nuevos manuales o eliminar los existentes a la izquierda. ¿Por dónde empezamos hoy?
             </div>
         </div>
+
         <div class="input-wrapper">
+            <div class="insights" id="insights">
+                <div class="chip" onclick="ask('Resumen de seguridad')">Resumen de seguridad</div>
+                <div class="chip" onclick="ask('Parámetros de red')">Configuración de red</div>
+                <div class="chip" onclick="ask('¿Cuándo es el mantenimiento?')">Mantenimiento</div>
+            </div>
             <div class="input-bar">
-                <input type="text" id="userInput" placeholder="Haz una pregunta técnica o describe un problema..."
+                <input type="text" id="userInput" placeholder="Escribe para buscar información en tus fuentes..."
                     onkeydown="if(event.key==='Enter') runAI()">
-                <button class="send" onclick="runAI()">→</button>
+                <button class="btn-send" onclick="runAI()">→</button>
             </div>
         </div>
     </div>
 
     <script>
-        const database = [
-            { id: 101, key: ["ip", "red", "direccion"], text: "La configuración de red predeterminada para el rack principal es 192.168.0.1 con máscara 255.255.255.0.", src: "Manual_Siemens_S7.pdf" },
-            { id: 102, key: ["emergencia", "protocolo", "parada", "seguridad"], text: "Ante una parada de emergencia, se debe activar el relé K1-10 y verificar el enclavamiento del panel Z1.", src: "Protocolo_Emergencia_V2.docx" },
-            { id: 103, key: ["mantenimiento", "limpieza", "aceite"], text: "Los servomotores requieren inspección cada 8000 horas de ciclo continuo.", src: "Manual_Siemens_S7.pdf" },
-            { id: 104, key: ["error", "fallo", "advertencia"], text: "Cualquier código de error '0x' en el PLC indica una falla de comunicación en el bus de campo.", src: "Manual_Siemens_S7.pdf" }
+        let sources = [
+            { id: 1, name: "Manual_Siemens_S7.pdf", content: "El PLC S7-1200 usa la IP 192.168.0.1 por defecto. El bus de campo Profinet opera a 100Mbps.", tags: ["ip", "red", "siemens", "profinet"] },
+            { id: 2, name: "Protocolo_K1_Seguridad.docx", content: "El enclavamiento K1 se activa tras una parada de E-Stop. Tiempo de respuesta < 50ms.", tags: ["seguridad", "k1", "e-stop", "parada"] },
+            { id: 3, name: "Manual_Motor_M101.pdf", content: "Lubricación requerida cada 5000h. Motor trifásico 400V.", tags: ["mantenimiento", "motor", "lubricación"] }
         ];
+
+        function renderSources() {
+            const list = document.getElementById('sourceList');
+            list.innerHTML = sources.map(s => `
+                <div class="source-item" id="src-${s.id}">
+                    <div class="source-info">
+                        <span style="font-size: 1.2rem;">📄</span>
+                        <div class="source-name">${s.name}</div>
+                    </div>
+                    <button class="btn-remove" onclick="removeSource(${s.id})">×</button>
+                </div>
+            `).join('');
+
+            // Re-generate insights chip
+            const insights = document.getElementById('insights');
+            insights.innerHTML = `
+                <div class="chip" onclick="ask('Resumen de seguridad')">Resumen de seguridad</div>
+                <div class="chip" onclick="ask('Configuración de red')">Red y Profinet</div>
+                ${sources.length > 0 ? `<div class="chip" onclick="ask('Explica el contenido de ${sources[0].name}')">Analizar ${sources[0].name}</div>` : ''}
+            `;
+        }
+
+        function removeSource(id) {
+            sources = sources.filter(s => s.id !== id);
+            renderSources();
+            addLog(`IA: He eliminado el documento del índice. El conocimiento ya no está disponible para consultas.`, true);
+        }
+
+        function addSourceSim() {
+            const name = `Nuevo_Log_Planta_${Math.floor(Math.random() * 100)}.txt`;
+            const newSrc = {
+                id: Date.now(),
+                name: name,
+                content: "Registro reciente: Se han detectado vibraciones anormales en la línea 4. Se recomienda revisión del eje central.",
+                tags: ["vibración", "línea 4", "eje", "anomalía"]
+            };
+            sources.push(newSrc);
+            renderSources();
+            addLog(`IA: Nuevo documento "${name}" indexado. He encontrado información sobre vibraciones en la línea 4.`);
+        }
+
+        function ask(text) {
+            document.getElementById('userInput').value = text;
+            runAI();
+        }
 
         function runAI() {
             const input = document.getElementById('userInput');
             const chat = document.getElementById('chat');
-            const q = input.value.trim();
+            const q = input.value.trim().toLowerCase();
             if (!q) return;
 
-            chat.innerHTML += `<div class="msg user">${q}</div>`;
+            chat.innerHTML += `<div class="msg msg-user">${input.value}</div>`;
 
             setTimeout(() => {
-                let responseText = "No tengo información exacta sobre eso en tus documentos, pero basándome en mi entrenamiento general de automatización, te recomiendo verificar los registros del TIA Portal o el estado físico de los módulos I/O.";
-                let sourcesFound = [];
+                let foundMsg = "No he encontrado referencias en las fuentes actuales. Prueba a subir el manual correspondiente.";
+                let citationsHTML = "";
+                let foundSources = [];
 
-                const words = q.toLowerCase().split(/\W+/);
-                database.forEach(entry => {
-                    if (entry.key.some(k => words.includes(k))) {
-                        responseText = entry.text;
-                        sourcesFound.push(entry.src);
+                sources.forEach(s => {
+                    if (s.tags.some(t => q.includes(t)) || q.includes(s.name.toLowerCase())) {
+                        foundMsg = s.content;
+                        foundSources.push(s.name);
                     }
                 });
 
-                const citeHTML = sourcesFound.length > 0 ? `<div style="margin-bottom:10px;">${[...new Set(sourcesFound)].map(s => `<span class="citation">${s}</span>`).join('')}</div>` : "";
+                if (foundSources.length > 0) {
+                    citationsHTML = `<div class="citations">${[...new Set(foundSources)].map(name => `<span class="citation-chip">${name}</span>`).join('')}</div>`;
+                }
 
-                chat.innerHTML += `<div class="msg ai">${citeHTML}${responseText}</div>`;
+                chat.innerHTML += `
+                    <div class="msg msg-ai">
+                        ${citationsHTML}
+                        ${foundMsg}
+                    </div>
+                `;
                 chat.scrollTop = chat.scrollHeight;
-            }, 800);
+            }, 700);
 
             input.value = '';
         }
 
-        function simulateUpload() {
-            const up = document.getElementById('uploading');
-            up.style.display = 'block';
-            setTimeout(() => {
-                const list = document.getElementById('doc-list');
-                const name = `Nuevas_Notas_${Math.floor(Math.random() * 100)}.txt`;
-                list.innerHTML += `<div class="source-pill">📄 ${name}</div>`;
-                up.style.display = 'none';
-                database.push({ id: 999, key: ["nuevo", "notas", "reciente"], text: "Contenido indexado del nuevo archivo: La línea 3 ha sido actualizada satisfactoriamente.", src: name });
-            }, 2000);
+        function addLog(msg, isWarning = false) {
+            const chat = document.getElementById('chat');
+            chat.innerHTML += `
+                <div class="msg" style="color: ${isWarning ? '#ef4444' : '#64748b'}; font-size: 0.85rem; text-align: center; font-style: italic;">
+                    ${msg}
+                </div>
+            `;
+            chat.scrollTop = chat.scrollHeight;
         }
+
+        function generateNotebookGuide() {
+            addSourceSim();
+            addLog("IA: He generado una guía de uso basada en tus fuentes actuales y la he añadido a tu libreta.");
+        }
+
+        renderSources();
     </script>
 </body>
 
