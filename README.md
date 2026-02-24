@@ -1,26 +1,16 @@
-# 🧠 Ejercicio 2.1: Prototipo RAG Industrial
-### Recuperación Aumentada por Generación para Manuales Técnicos
+# 🧠 Ejercicio 2.1: RAG Research Notebook
+### Investigación y Generación Aumentada por Recuperación Industrial
 
-Sistema de inteligencia artificial diseñado para indexar y consultar documentación técnica compleja de plantas industriales.
+Sistema inspirado en la arquitectura **NotebookLM** para la investigación técnica profunda de manuales industriales mediante agentes de IA.
 
 ## 🚀 Inicio Rápido
+Inicia la herramienta de investigación interactiva:
+👉 **[Abrir Research Notebook](research_notebook.html)**
 
-1. **Clonar**:
-   ```bash
-   git clone https://github.com/AbyssIzangamer17/Ejercicio_2_1_RAG.git
-   cd Ejercicio_2_1_RAG
-   ```
-
-2. **Ejecutar**:
-   ```powershell
-   python rag_prototype.py
-   ```
-
-## � Visualización de Resultados
-Al ejecutar el script, verás en la terminal:
-- **Usuario**: Consultas sobre mantenimiento o errores (ej. F01).
-- **Agente RAG**: Respuesta generada basándose exclusivamente en el "contexto de manuales" recuperado.
-- También puedes consultar el informe académico en `Documentacion_RAG.docx`.
+## 📋 Especificaciones
+- **Estado del Arte**: Investigación sobre las tendencias RAG en 2025 (GraphRAG, Agentic RAG).
+- **Citas de Fuentes**: El sistema vincula cada respuesta al documento técnico original para garantizar la trazabilidad y eliminar alucinaciones.
+- **Prototipo**: Interfaz limpia tipo Google Research para operarios de planta.
 
 ## 👤 Autor
 **Izan Urios** - 3R de Automatización y Robótica Industrial.
