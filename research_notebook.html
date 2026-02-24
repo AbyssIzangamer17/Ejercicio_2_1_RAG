@@ -3,13 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Investigación RAG - NotebookLM Industrial</title>
+    <title>NotebookLM Industrial v2.0 - IA Brain</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #fcfcfc;
-            --sidebar: #f1f3f4;
+            --bg: #f8fafc;
+            --sidebar: #ffffff;
             --accent: #1a73e8;
+            --border: #e2e8f0;
         }
 
         body {
@@ -22,88 +23,137 @@
         }
 
         .sidebar {
-            width: 280px;
+            width: 320px;
             background: var(--sidebar);
-            border-right: 1px solid #ddd;
-            padding: 20px;
+            border-right: 1px solid var(--border);
+            padding: 25px;
             display: flex;
             flex-direction: column;
         }
 
         .sidebar h2 {
-            font-size: 0.8rem;
-            color: #5f6368;
+            font-size: 0.85rem;
+            color: #64748b;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
         }
 
-        .doc {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+        .doc-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .source-pill {
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            border-radius: 12px;
             padding: 12px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-size: 0.85rem;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .source-pill:hover {
+            border-color: var(--accent);
+            background: #fdfdfd;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: 0.2s;
         }
 
-        .doc:hover {
+        .upload-area:hover {
             border-color: var(--accent);
-            background: #f8f9fa;
+            color: var(--accent);
         }
 
-        .content {
+        .main {
             flex: 1;
-            padding: 40px 100px;
             display: flex;
             flex-direction: column;
+            width: 100%;
             position: relative;
+            background: #ffffff;
         }
 
         .chat {
             flex: 1;
+            padding: 40px 100px;
             overflow-y: auto;
-            padding-bottom: 50px;
+            scroll-behavior: smooth;
         }
 
         .msg {
-            margin-bottom: 25px;
-            line-height: 1.6;
+            margin-bottom: 30px;
+            line-height: 1.7;
             max-width: 800px;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .user {
             font-weight: 600;
-            font-size: 1.1rem;
-            color: #202124;
-            margin-top: 30px;
+            font-size: 1.15rem;
+            color: #1e293b;
         }
 
         .ai {
-            color: #3c4043;
-            border-left: 3px solid var(--accent);
-            padding-left: 20px;
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #f1f5f9;
+            color: #334155;
+            position: relative;
         }
 
-        .tag {
-            background: #e8f0fe;
-            color: var(--accent);
-            font-size: 0.75rem;
-            font-weight: 600;
+        .citation {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #4338ca;
+            font-size: 0.7rem;
+            font-weight: 700;
             padding: 2px 8px;
             border-radius: 4px;
-            margin-bottom: 8px;
-            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
         }
 
-        .input-box {
-            background: #f1f3f4;
-            border-radius: 28px;
-            padding: 10px 24px;
+        .input-wrapper {
+            padding: 30px 100px;
+            background: white;
+            border-top: 1px solid var(--border);
+        }
+
+        .input-bar {
             display: flex;
+            gap: 15px;
             align-items: center;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background: #f1f5f9;
+            border-radius: 30px;
+            padding: 8px 15px;
         }
 
         input {
@@ -111,107 +161,102 @@
             background: transparent;
             border: none;
             outline: none;
-            padding: 12px 0;
+            padding: 10px;
             font-size: 1rem;
-            color: #202124;
+            color: #1e293b;
         }
 
-        button {
+        .send {
             background: var(--accent);
             color: white;
             border: none;
-            border-radius: 50%;
             width: 40px;
             height: 40px;
+            border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-        }
-
-        .summary-btn {
-            margin-top: auto;
-            background: white;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .summary-btn:hover {
-            background: #e8f0fe;
         }
     </style>
 </head>
 
 <body>
     <div class="sidebar">
-        <h2>Fuentes del Proyecto</h2>
-        <div class="doc" onclick="summarize('motor')">📄 Manual_Motor_M101.pdf</div>
-        <div class="doc" onclick="summarize('protocolo')">📄 Protocolo_Seguridad_K1.docx</div>
-        <div class="doc" onclick="summarize('guia')">📄 Guia_Config_Siemens.pdf</div>
-        <button class="summary-btn" onclick="globalSummary()">Generar Resumen Global</button>
-    </div>
-    <div class="content">
-        <div class="chat" id="chat">
-            <div class="msg ai">
-                <span class="tag">AGENTE RAG</span><br>
-                Hola Izan. He analizado con éxito tus manuales técnicos. Estoy listo para responder consultas basadas
-                únicamente en tus documentos de automatización. ¿Qué necesitas investigar hoy?
+        <h2>Fuentes de la Libreta</h2>
+        <div class="doc-list" id="doc-list">
+            <div class="source-pill">📄 Manual_Siemens_S7.pdf</div>
+            <div class="source-pill">📄 Protocolo_Emergencia_V2.docx</div>
+        </div>
+        <div class="upload-area" onclick="simulateUpload()">
+            + Subir nueva fuente (PDF, DOCX, TXT)
+            <div id="uploading" style="display:none; margin-top:10px; color:var(--accent);">Analizando documento...
             </div>
         </div>
-        <div class="input-box">
-            <input type="text" id="q" placeholder="Pregunta sobre mantenimiento, IP del PLC, errores..."
-                onkeydown="if(event.key==='Enter') runRAG()">
-            <button onclick="runRAG()">→</button>
+    </div>
+    <div class="main">
+        <div class="chat" id="chat">
+            <div class="msg ai">
+                Hola Izan. He indexado tus manuales de automatización. Mi IA está activa y puede interpretar consultas
+                complejas, resumir protocolos o diagnosticar errores basándose en las fuentes. ¿Qué deseas investigar?
+            </div>
+        </div>
+        <div class="input-wrapper">
+            <div class="input-bar">
+                <input type="text" id="userInput" placeholder="Haz una pregunta técnica o describe un problema..."
+                    onkeydown="if(event.key==='Enter') runAI()">
+                <button class="send" onclick="runAI()">→</button>
+            </div>
         </div>
     </div>
+
     <script>
-        const kb = {
-            "mantenimiento": { t: "El mantenimiento del motor M101 es cada 5000h de operación.", s: "Manual_Motor_M101.pdf" },
-            "k1": { t: "El protocolo K1 es crítico para paradas industriales seguras.", s: "Protocolo_Seguridad_K1.docx" },
-            "ip": { t: "IP asignada: 192.168.0.1 (Subred 255.255.255.0).", s: "Guia_Config_Siemens.pdf" },
-            "f01": { t: "F01 detectado: Sobrecarga térmica. Revisar ventilador 02.", s: "Manual_Motor_M101.pdf" }
-        };
+        const database = [
+            { id: 101, key: ["ip", "red", "direccion"], text: "La configuración de red predeterminada para el rack principal es 192.168.0.1 con máscara 255.255.255.0.", src: "Manual_Siemens_S7.pdf" },
+            { id: 102, key: ["emergencia", "protocolo", "parada", "seguridad"], text: "Ante una parada de emergencia, se debe activar el relé K1-10 y verificar el enclavamiento del panel Z1.", src: "Protocolo_Emergencia_V2.docx" },
+            { id: 103, key: ["mantenimiento", "limpieza", "aceite"], text: "Los servomotores requieren inspección cada 8000 horas de ciclo continuo.", src: "Manual_Siemens_S7.pdf" },
+            { id: 104, key: ["error", "fallo", "advertencia"], text: "Cualquier código de error '0x' en el PLC indica una falla de comunicación en el bus de campo.", src: "Manual_Siemens_S7.pdf" }
+        ];
 
-        function runRAG() {
-            const i = document.getElementById('q');
-            const c = document.getElementById('chat');
-            const val = i.value.trim();
-            if (!val) return;
+        function runAI() {
+            const input = document.getElementById('userInput');
+            const chat = document.getElementById('chat');
+            const q = input.value.trim();
+            if (!q) return;
 
-            c.innerHTML += `<div class="msg user">${i.value}</div>`;
+            chat.innerHTML += `<div class="msg user">${q}</div>`;
 
             setTimeout(() => {
-                let response = "No encuentro información específica sobre eso en los manuales cargados.";
-                let source = "Búsqueda General";
-                for (let k in kb) {
-                    if (val.toLowerCase().includes(k)) {
-                        response = kb[k].t;
-                        source = kb[k].s;
-                        break;
+                let responseText = "No tengo información exacta sobre eso en tus documentos, pero basándome en mi entrenamiento general de automatización, te recomiendo verificar los registros del TIA Portal o el estado físico de los módulos I/O.";
+                let sourcesFound = [];
+
+                const words = q.toLowerCase().split(/\W+/);
+                database.forEach(entry => {
+                    if (entry.key.some(k => words.includes(k))) {
+                        responseText = entry.text;
+                        sourcesFound.push(entry.src);
                     }
-                }
-                c.innerHTML += `<div class="msg ai"><span class="tag">FUENTE: ${source}</span><br>${response}</div>`;
-                c.scrollTop = c.scrollHeight;
-            }, 600);
-            i.value = '';
+                });
+
+                const citeHTML = sourcesFound.length > 0 ? `<div style="margin-bottom:10px;">${[...new Set(sourcesFound)].map(s => `<span class="citation">${s}</span>`).join('')}</div>` : "";
+
+                chat.innerHTML += `<div class="msg ai">${citeHTML}${responseText}</div>`;
+                chat.scrollTop = chat.scrollHeight;
+            }, 800);
+
+            input.value = '';
         }
 
-        function summarize(type) {
-            document.getElementById('q').value = `Resumen de ${type}`;
-            runRAG();
-        }
-
-        function globalSummary() {
-            const h = document.getElementById('chat');
-            h.innerHTML += `<div class="msg ai"><span class="tag">RESUMEN GLOBAL</span><br>Tu planta industrial cuenta con un motor M101 con mantenimiento cada 5000h y un PLC Siemens configurado en la red 192.168.0.1. El protocolo de seguridad K1 está activo y verificado.</div>`;
-            h.scrollTop = h.scrollHeight;
+        function simulateUpload() {
+            const up = document.getElementById('uploading');
+            up.style.display = 'block';
+            setTimeout(() => {
+                const list = document.getElementById('doc-list');
+                const name = `Nuevas_Notas_${Math.floor(Math.random() * 100)}.txt`;
+                list.innerHTML += `<div class="source-pill">📄 ${name}</div>`;
+                up.style.display = 'none';
+                database.push({ id: 999, key: ["nuevo", "notas", "reciente"], text: "Contenido indexado del nuevo archivo: La línea 3 ha sido actualizada satisfactoriamente.", src: name });
+            }, 2000);
         }
     </script>
 </body>
