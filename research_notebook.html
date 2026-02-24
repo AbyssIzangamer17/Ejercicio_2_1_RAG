@@ -3,74 +3,79 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>NotebookLM Industrial v3.0 | Research Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>NotebookLM Industrial | Izan Urios</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --bg: #f8fafc;
-            --sidebar: #ffffff;
+            --sidebar-bg: #f8fafc;
+            --main-bg: #ffffff;
             --accent: #1a73e8;
-            --border: #e2e8f0;
-            --text: #202124;
+            --text-primary: #1f1f1f;
+            --text-secondary: #5f6368;
+            --border: #dadce0;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
+            font-family: 'Roboto', sans-serif;
+            background: var(--main-bg);
+            color: var(--text-primary);
             margin: 0;
             display: flex;
             height: 100vh;
             overflow: hidden;
-            color: var(--text);
         }
 
-        /* Sidebar - Sources Management */
         .sidebar {
-            width: 340px;
-            background: var(--sidebar);
+            width: 300px;
+            background: var(--sidebar-bg);
             border-right: 1px solid var(--border);
-            padding: 25px;
             display: flex;
             flex-direction: column;
+            padding: 16px;
+            box-sizing: border-box;
         }
 
-        .sidebar h2 {
+        .sidebar-header {
+            font-family: 'Google Sans', sans-serif;
             font-size: 0.85rem;
-            color: #5f6368;
+            font-weight: 500;
+            color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            margin: 8px 0 16px 8px;
         }
 
-        .source-list {
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .source-item {
-            background: #f1f5f9;
+        .source-card {
+            background: white;
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 0.85rem;
-            border: 1px solid transparent;
+            justify-content: space-between;
             transition: 0.2s;
+            cursor: pointer;
         }
 
-        .source-item:hover {
+        .source-card:hover {
             border-color: var(--accent);
-            background: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
         }
 
         .source-info {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-size: 0.9rem;
             overflow: hidden;
+        }
+
+        .source-icon {
+            color: var(--accent);
+            font-weight: bold;
         }
 
         .source-name {
@@ -79,163 +84,135 @@
             text-overflow: ellipsis;
         }
 
-        .btn-remove {
-            background: none;
+        .remove-src {
+            color: #9aa0a6;
             border: none;
-            color: #94a3b8;
+            background: none;
             cursor: pointer;
-            padding: 4px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            line-height: 1;
         }
 
-        .btn-remove:hover {
-            color: #ef4444;
+        .remove-src:hover {
+            color: #d93025;
         }
 
-        .upload-zone {
-            border: 2px dashed var(--border);
-            border-radius: 14px;
-            padding: 15px;
+        .add-source {
+            margin-top: 12px;
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            padding: 16px;
             text-align: center;
-            font-size: 0.8rem;
-            color: #64748b;
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 500;
             cursor: pointer;
-            margin-top: 15px;
             transition: 0.2s;
         }
 
-        .upload-zone:hover {
-            border-color: var(--accent);
-            color: var(--accent);
+        .add-source:hover {
+            background: #e8f0fe;
+            border-style: solid;
         }
 
-        /* Main Area - NotebookLM Experience */
-        .main {
+        .workspace {
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: white;
             position: relative;
         }
 
-        .header {
-            padding: 15px 40px;
+        .workspace-header {
+            height: 64px;
             border-bottom: 1px solid var(--border);
+            padding: 0 32px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
-        .chat-area {
+        .workspace-title {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .chat-container {
             flex: 1;
-            padding: 40px 80px;
             overflow-y: auto;
-            scroll-behavior: smooth;
+            padding: 32px 15% 100px 15%;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
         }
 
         .msg {
-            margin-bottom: 35px;
-            max-width: 850px;
-            line-height: 1.7;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            max-width: 800px;
+            line-height: 1.6;
+            font-size: 1rem;
         }
 
         .msg-user {
+            font-family: 'Google Sans', sans-serif;
             font-weight: 500;
-            font-size: 1.1rem;
-            margin-top: 40px;
+            font-size: 1.25rem;
             color: #1e293b;
+            margin-top: 16px;
         }
 
         .msg-ai {
-            background: #f8fafc;
-            border-radius: 24px;
-            padding: 30px;
-            border: 1px solid #f1f5f9;
+            color: #3c4043;
+            border-left: 3px solid var(--accent);
+            padding-left: 24px;
+            position: relative;
         }
 
-        .citations {
-            margin-bottom: 15px;
+        .citations-row {
             display: flex;
             gap: 8px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
         }
 
-        .citation-chip {
-            background: #e0e7ff;
-            color: #4338ca;
+        .citation-tag {
+            background: #e8f0fe;
+            color: var(--accent);
             font-size: 0.7rem;
             font-weight: 700;
-            padding: 2px 10px;
-            border-radius: 6px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #c2e7ff;
         }
 
-        /* Insights / Quick Actions */
-        .insights {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .chip {
-            background: white;
-            border: 1px solid var(--border);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #5f6368;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .chip:hover {
-            border-color: var(--accent);
-            background: #f1f5f9;
-            color: var(--accent);
-        }
-
-        /* Input Bar */
-        .input-wrapper {
-            padding: 20px 80px 40px;
-            background: linear-gradient(transparent, white 30%);
-        }
-
-        .input-bar {
+        .floating-input {
+            position: absolute;
+            bottom: 32px;
+            left: 15%;
+            right: 15%;
             background: #f1f3f4;
-            border-radius: 30px;
-            padding: 10px 24px;
+            border-radius: 28px;
+            padding: 8px 20px;
             display: flex;
-            gap: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        input {
+        .floating-input input {
             flex: 1;
             background: transparent;
             border: none;
             outline: none;
-            padding: 10px 0;
+            padding: 12px 10px;
             font-size: 1rem;
+            color: var(--text-primary);
         }
 
-        .btn-send {
+        .send-btn {
             background: var(--accent);
             color: white;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -243,107 +220,109 @@
             justify-content: center;
             font-size: 1.2rem;
         }
+
+        .suggest-chips {
+            display: flex;
+            gap: 8px;
+            position: absolute;
+            bottom: 100px;
+            left: 15%;
+            right: 15%;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .chip {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 18px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: 0.2s;
+        }
+
+        .chip:hover {
+            background: #f1f3f4;
+            border-color: #bdc1c6;
+        }
     </style>
 </head>
 
 <body>
     <div class="sidebar">
-        <h2>Fuentes</h2>
-        <div class="source-list" id="sourceList">
-            <!-- Sources will be rendered here -->
+        <div class="sidebar-header">Fuentes</div>
+        <div id="sourceList" class="source-list"></div>
+        <div class="add-source" onclick="simulateFileUpload()">
+            Añadir fuente
         </div>
-
-        <div class="upload-zone" onclick="addSourceSim()">
-            <strong>+ Añadir fuente</strong><br>
-            PDF, Texto, Copiar/Pegar
-        </div>
-
-        <div style="margin-top: 20px; border-top: 1px solid var(--border); padding-top: 20px;">
-            <div class="chip" style="width: 100%; text-align: center; margin-bottom: 10px;"
-                onclick="generateNotebookGuide()">Guía de la libreta</div>
-            <p style="font-size: 0.7rem; color: #94a3b8; text-align: center;">Ecosistema IA de Izan Urios</p>
+        <div style="margin-top: auto; padding-top: 20px; text-align: center;">
+            <p style="font-size: 0.7rem; color: var(--text-secondary);">NotebookLM Industrial v4.0<br>Izan Urios 3R</p>
         </div>
     </div>
 
-    <div class="main">
-        <div class="header">
-            <h1 style="font-size: 1.2rem; margin: 0;">Research Notebook <span style="font-weight: 300; opacity: 0.5;">|
-                    Industrial v3.0</span></h1>
-            <div id="status" style="font-size: 0.75rem; color: #10b981;">● IA Lista</div>
+    <div class="workspace">
+        <div class="workspace-header">
+            <div class="workspace-title">Notas de Automatización Industrial</div>
+            <div style="color: var(--accent); font-size: 0.8rem; font-weight: 500;">Sincronizado</div>
         </div>
 
-        <div class="chat-area" id="chat">
+        <div class="chat-container" id="chat">
             <div class="msg msg-ai">
-                Hola Izan. He indexado tus documentos y estoy listo para generar "insights" industriales. Puedes subir
-                nuevos manuales o eliminar los existentes a la izquierda. ¿Por dónde empezamos hoy?
+                Hola Izan. He analizado tus manuales de planta. Puedo crear guías de estudio, resumir protocolos de
+                seguridad o ayudarte a configurar los nodos del PLC. ¿Qué información técnica necesitas extraer hoy?
             </div>
         </div>
 
-        <div class="input-wrapper">
-            <div class="insights" id="insights">
-                <div class="chip" onclick="ask('Resumen de seguridad')">Resumen de seguridad</div>
-                <div class="chip" onclick="ask('Parámetros de red')">Configuración de red</div>
-                <div class="chip" onclick="ask('¿Cuándo es el mantenimiento?')">Mantenimiento</div>
-            </div>
-            <div class="input-bar">
-                <input type="text" id="userInput" placeholder="Escribe para buscar información en tus fuentes..."
-                    onkeydown="if(event.key==='Enter') runAI()">
-                <button class="btn-send" onclick="runAI()">→</button>
-            </div>
+        <div class="suggest-chips" id="chips">
+            <div class="chip" onclick="ask('¿Qué dice el manual sobre la IP?')">Configuración IP</div>
+            <div class="chip" onclick="ask('Guía de seguridad K1')">Seguridad K1</div>
+            <div class="chip" onclick="ask('Resumen de mantenimiento')">Ciclos Motor</div>
+        </div>
+
+        <div class="floating-input">
+            <input type="text" id="userInput" placeholder="Haz una pregunta sobre tus documentos..."
+                onkeydown="if(event.key==='Enter') runAI()">
+            <button class="send-btn" onclick="runAI()">→</button>
         </div>
     </div>
 
     <script>
         let sources = [
-            { id: 1, name: "Manual_Siemens_S7.pdf", content: "El PLC S7-1200 usa la IP 192.168.0.1 por defecto. El bus de campo Profinet opera a 100Mbps.", tags: ["ip", "red", "siemens", "profinet"] },
-            { id: 2, name: "Protocolo_K1_Seguridad.docx", content: "El enclavamiento K1 se activa tras una parada de E-Stop. Tiempo de respuesta < 50ms.", tags: ["seguridad", "k1", "e-stop", "parada"] },
-            { id: 3, name: "Manual_Motor_M101.pdf", content: "Lubricación requerida cada 5000h. Motor trifásico 400V.", tags: ["mantenimiento", "motor", "lubricación"] }
+            { id: 1, name: "Guia_TIA_Portal_Profinet.pdf", content: "El PLC Siemens S7-1500 requiere la IP estática 192.168.0.1. El bus de campo Profinet debe configurarse en topología de estrella para baja latencia.", tags: ["ip", "red", "siemens", "profinet", "configuración"] },
+            { id: 2, name: "Protocolo_Seguridad_K1.docx", content: "El dispositivo de seguridad K1 supervisa las puertas de la celda de soldadura. Tras un RESET, debe pulsarse el botón azul de rearme físico.", tags: ["seguridad", "k1", "puerta", "rearme", "soldadura"] },
+            { id: 3, name: "Manual_Mantenimiento_Motor.pdf", content: "Periodicidad de mantenimiento: cada 5000h de trabajo. Ruido >80dB indica desgaste de rodamientos J3.", tags: ["mantenimiento", "motor", "ruido", "rodamientos", "5000h"] }
         ];
 
         function renderSources() {
             const list = document.getElementById('sourceList');
             list.innerHTML = sources.map(s => `
-                <div class="source-item" id="src-${s.id}">
+                <div class="source-card">
                     <div class="source-info">
-                        <span style="font-size: 1.2rem;">📄</span>
+                        <span class="source-icon">📄</span>
                         <div class="source-name">${s.name}</div>
                     </div>
-                    <button class="btn-remove" onclick="removeSource(${s.id})">×</button>
+                    <button class="remove-src" onclick="removeSource(${s.id})">×</button>
                 </div>
             `).join('');
-
-            // Re-generate insights chip
-            const insights = document.getElementById('insights');
-            insights.innerHTML = `
-                <div class="chip" onclick="ask('Resumen de seguridad')">Resumen de seguridad</div>
-                <div class="chip" onclick="ask('Configuración de red')">Red y Profinet</div>
-                ${sources.length > 0 ? `<div class="chip" onclick="ask('Explica el contenido de ${sources[0].name}')">Analizar ${sources[0].name}</div>` : ''}
-            `;
         }
 
         function removeSource(id) {
             sources = sources.filter(s => s.id !== id);
             renderSources();
-            addLog(`IA: He eliminado el documento del índice. El conocimiento ya no está disponible para consultas.`, true);
+            addAILog("He eliminado el documento del contexto de la conversación.");
         }
 
-        function addSourceSim() {
-            const name = `Nuevo_Log_Planta_${Math.floor(Math.random() * 100)}.txt`;
-            const newSrc = {
-                id: Date.now(),
-                name: name,
-                content: "Registro reciente: Se han detectado vibraciones anormales en la línea 4. Se recomienda revisión del eje central.",
-                tags: ["vibración", "línea 4", "eje", "anomalía"]
-            };
-            sources.push(newSrc);
+        function simulateFileUpload() {
+            const name = `Análisis_Planta_${Math.floor(Math.random() * 100)}.txt`;
+            sources.push({ id: Date.now(), name: name, content: "Nueva información: Se ha instalado un variador Sinamics G120 en la estación 4.", tags: ["variador", "sinamics", "estación 4"] });
             renderSources();
-            addLog(`IA: Nuevo documento "${name}" indexado. He encontrado información sobre vibraciones en la línea 4.`);
+            addAILog(`Documento "${name}" añadido y analizado. Listo para consultas.`);
         }
 
-        function ask(text) {
-            document.getElementById('userInput').value = text;
-            runAI();
-        }
+        function ask(text) { document.getElementById('userInput').value = text; runAI(); }
 
         function runAI() {
             const input = document.getElementById('userInput');
@@ -354,46 +333,28 @@
             chat.innerHTML += `<div class="msg msg-user">${input.value}</div>`;
 
             setTimeout(() => {
-                let foundMsg = "No he encontrado referencias en las fuentes actuales. Prueba a subir el manual correspondiente.";
-                let citationsHTML = "";
-                let foundSources = [];
+                let answer = "No encuentro esa información exacta en tus fuentes actuales. Sin embargo, en el ámbito industrial, esto suele gestionarse mediante el TIA Portal o la herramienta de configuración del fabricante.";
+                let citedNames = [];
 
                 sources.forEach(s => {
                     if (s.tags.some(t => q.includes(t)) || q.includes(s.name.toLowerCase())) {
-                        foundMsg = s.content;
-                        foundSources.push(s.name);
+                        answer = s.content;
+                        citedNames.push(s.name);
                     }
                 });
 
-                if (foundSources.length > 0) {
-                    citationsHTML = `<div class="citations">${[...new Set(foundSources)].map(name => `<span class="citation-chip">${name}</span>`).join('')}</div>`;
-                }
+                const citeHTML = citedNames.length > 0 ? `<div class="citations-row">${[...new Set(citedNames)].map(n => `<span class="citation-tag">${n}</span>`).join('')}</div>` : "";
 
-                chat.innerHTML += `
-                    <div class="msg msg-ai">
-                        ${citationsHTML}
-                        ${foundMsg}
-                    </div>
-                `;
+                chat.innerHTML += `<div class="msg msg-ai">${citeHTML}${answer}</div>`;
                 chat.scrollTop = chat.scrollHeight;
-            }, 700);
-
+            }, 600);
             input.value = '';
         }
 
-        function addLog(msg, isWarning = false) {
+        function addAILog(text) {
             const chat = document.getElementById('chat');
-            chat.innerHTML += `
-                <div class="msg" style="color: ${isWarning ? '#ef4444' : '#64748b'}; font-size: 0.85rem; text-align: center; font-style: italic;">
-                    ${msg}
-                </div>
-            `;
+            chat.innerHTML += `<div style="font-size: 0.8rem; color: var(--text-secondary); text-align: center; font-style: italic;">IA: ${text}</div>`;
             chat.scrollTop = chat.scrollHeight;
-        }
-
-        function generateNotebookGuide() {
-            addSourceSim();
-            addLog("IA: He generado una guía de uso basada en tus fuentes actuales y la he añadido a tu libreta.");
         }
 
         renderSources();
