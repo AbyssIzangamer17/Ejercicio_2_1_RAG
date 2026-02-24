@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>NotebookLM | Tu Libreta de Investigación IA</title>
+    <title>NotebookLM Industrial | AI Research Assistant</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&family=Roboto:wght@400;500&display=swap"
         rel="stylesheet">
@@ -11,14 +11,14 @@
         :root {
             --accent: #1a73e8;
             --bg: #fff;
-            --sidebar: #f8f9fa;
-            --border: #dadce0;
-            --txt: #202124;
-            --txt2: #5f6368;
+            --sb: #f8f9fa;
+            --bd: #dadce0;
+            --t1: #202124;
+            --t2: #5f6368
         }
 
         * {
-            box-sizing: border-box;
+            box-sizing: border-box
         }
 
         body {
@@ -26,158 +26,156 @@
             margin: 0;
             display: flex;
             height: 100vh;
-            color: var(--txt);
-            background: var(--bg);
+            color: var(--t1);
+            background: var(--bg)
         }
 
-        /* === SIDEBAR === */
         .sidebar {
-            width: 320px;
-            background: var(--sidebar);
-            border-right: 1px solid var(--border);
+            width: 330px;
+            background: var(--sb);
+            border-right: 1px solid var(--bd);
             display: flex;
-            flex-direction: column;
+            flex-direction: column
         }
 
-        .sidebar-top {
-            padding: 24px 20px 12px;
-            border-bottom: 1px solid var(--border);
+        .sb-top {
+            padding: 20px 16px;
+            border-bottom: 1px solid var(--bd)
         }
 
-        .sidebar-top h2 {
+        .sb-top h2 {
             margin: 0;
             font-family: 'Google Sans';
-            font-size: 1.1rem;
-            font-weight: 500;
+            font-size: 1.05rem
         }
 
-        .src-count {
-            font-size: 0.75rem;
-            color: var(--txt2);
-            margin-top: 4px;
+        .sb-count {
+            font-size: .72rem;
+            color: var(--t2);
+            margin-top: 4px
         }
 
-        .source-scroll {
+        .sb-scroll {
             flex: 1;
             overflow-y: auto;
-            padding: 12px;
+            padding: 10px
         }
 
         .src {
             background: #fff;
-            border: 1px solid var(--border);
+            border: 1px solid var(--bd);
             border-radius: 12px;
-            padding: 14px;
-            margin-bottom: 10px;
+            padding: 12px;
+            margin-bottom: 8px;
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            transition: 0.2s;
+            gap: 10px;
             position: relative;
+            transition: .2s
         }
 
         .src:hover {
             border-color: var(--accent);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .06)
         }
 
-        .src-body {
+        .src-b {
             flex: 1;
-            overflow: hidden;
+            overflow: hidden
         }
 
-        .src-title {
+        .src-t {
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: .88rem;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
+            text-overflow: ellipsis
         }
 
-        .src-preview {
-            font-size: 0.75rem;
-            color: var(--txt2);
-            margin-top: 4px;
+        .src-p {
+            font-size: .72rem;
+            color: var(--t2);
+            margin-top: 3px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            overflow: hidden;
+            overflow: hidden
         }
 
-        .src-del {
+        .src-x {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 6px;
+            right: 6px;
             background: none;
             border: none;
             color: #bbb;
             cursor: pointer;
             font-size: 1.2rem;
             border-radius: 50%;
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center
         }
 
-        .src-del:hover {
+        .src-x:hover {
             background: #fce8e6;
-            color: #d93025;
+            color: #d93025
         }
 
-        .sidebar-bottom {
-            padding: 16px;
-            border-top: 1px solid var(--border);
+        .sb-bot {
+            padding: 14px;
+            border-top: 1px solid var(--bd)
         }
 
         .add-btn {
             width: 100%;
-            padding: 14px;
+            padding: 13px;
             border: 2px dashed #bdc1c6;
             border-radius: 12px;
             background: transparent;
             color: var(--accent);
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: .88rem;
             cursor: pointer;
-            transition: 0.2s;
+            transition: .2s
         }
 
         .add-btn:hover {
             background: #e8f0fe;
             border-style: solid;
-            border-color: var(--accent);
+            border-color: var(--accent)
         }
 
-        .paste-area {
+        .paste-box {
             display: none;
-            margin-top: 12px;
+            margin-top: 12px
         }
 
-        .paste-area textarea {
+        .paste-box textarea {
             width: 100%;
-            height: 100px;
-            border: 1px solid var(--border);
+            height: 90px;
+            border: 1px solid var(--bd);
             border-radius: 8px;
             padding: 10px;
-            font-size: 0.85rem;
+            font-size: .83rem;
             resize: none;
             outline: none;
-            font-family: inherit;
+            font-family: inherit
         }
 
-        .paste-area input {
+        .paste-box input {
             width: 100%;
-            margin-bottom: 8px;
-            border: 1px solid var(--border);
+            margin-bottom: 6px;
+            border: 1px solid var(--bd);
             border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 0.85rem;
-            outline: none;
+            padding: 8px;
+            font-size: .83rem;
+            outline: none
         }
 
-        .paste-area button {
+        .paste-box button {
             background: var(--accent);
             color: #fff;
             border: none;
@@ -185,321 +183,357 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: 500;
-            margin-top: 8px;
+            margin-top: 8px
         }
 
-        /* === MAIN WORKSPACE === */
-        .workspace {
+        /* API Key Config */
+        .api-box {
+            padding: 12px;
+            border-top: 1px solid var(--bd);
+            font-size: .78rem
+        }
+
+        .api-box input {
+            width: 100%;
+            border: 1px solid var(--bd);
+            border-radius: 6px;
+            padding: 6px 8px;
+            font-size: .78rem;
+            outline: none;
+            margin-top: 6px
+        }
+
+        .api-status {
+            margin-top: 4px;
+            font-size: .7rem
+        }
+
+        .ws {
             flex: 1;
             display: flex;
             flex-direction: column;
-            position: relative;
+            position: relative
         }
 
-        .ws-header {
-            height: 56px;
-            border-bottom: 1px solid var(--border);
-            padding: 0 40px;
+        .ws-h {
+            height: 54px;
+            border-bottom: 1px solid var(--bd);
+            padding: 0 36px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-between
         }
 
-        .ws-title {
+        .ws-t {
             font-family: 'Google Sans';
-            font-size: 1rem;
+            font-size: 1rem
         }
 
         .chat {
             flex: 1;
             overflow-y: auto;
-            padding: 40px 12% 160px 12%;
+            padding: 36px 11% 170px 11%;
             display: flex;
             flex-direction: column;
-            gap: 36px;
+            gap: 32px
         }
 
         .msg {
             max-width: 860px;
             line-height: 1.75;
-            animation: up 0.35s ease;
+            animation: up .35s ease
         }
 
         @keyframes up {
             from {
                 opacity: 0;
-                transform: translateY(16px);
+                transform: translateY(16px)
             }
 
             to {
-                opacity: 1;
+                opacity: 1
             }
         }
 
         .q {
             font-family: 'Google Sans';
             font-weight: 500;
-            font-size: 1.35rem;
-            color: #1e293b;
+            font-size: 1.3rem;
             border-top: 1px solid #f1f3f4;
-            padding-top: 28px;
+            padding-top: 24px
         }
 
         .a {
             background: #f8fafc;
-            padding: 28px 32px;
-            border-radius: 24px;
+            padding: 26px 30px;
+            border-radius: 22px;
             border: 1px solid #edf2f7;
             color: #3c4043;
-            font-size: 1.05rem;
+            font-size: 1rem;
+            white-space: pre-wrap
         }
 
         .cites {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
-            margin-bottom: 14px;
+            margin-bottom: 12px
         }
 
         .cite {
             background: #e8f0fe;
             color: #1967d2;
-            font-size: 0.72rem;
+            font-size: .7rem;
             font-weight: 700;
             padding: 3px 10px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            border-radius: 6px
         }
 
-        /* Floating Controls */
-        .float-wrap {
+        .thinking {
+            color: var(--accent);
+            font-style: italic;
+            font-size: .9rem
+        }
+
+        .float {
             position: absolute;
-            bottom: 32px;
-            left: 12%;
-            right: 12%;
+            bottom: 28px;
+            left: 11%;
+            right: 11%
         }
 
         .chips {
             display: flex;
-            gap: 10px;
-            margin-bottom: 12px;
-            overflow-x: auto;
+            gap: 8px;
+            margin-bottom: 10px;
+            overflow-x: auto
         }
 
         .chip {
             background: #fff;
-            border: 1px solid var(--border);
-            padding: 10px 20px;
-            border-radius: 24px;
-            font-size: 0.88rem;
+            border: 1px solid var(--bd);
+            padding: 9px 18px;
+            border-radius: 22px;
+            font-size: .85rem;
             cursor: pointer;
             white-space: nowrap;
             color: #3c4043;
-            transition: 0.2s;
-            font-weight: 500;
+            transition: .2s;
+            font-weight: 500
         }
 
         .chip:hover {
             background: #f1f3f4;
             border-color: var(--accent);
-            color: var(--accent);
+            color: var(--accent)
         }
 
-        .input-bar {
+        .ibar {
             background: #f1f3f4;
-            border-radius: 32px;
-            padding: 10px 20px;
+            border-radius: 30px;
+            padding: 8px 18px;
             display: flex;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .08)
         }
 
-        .input-bar input {
+        .ibar input {
             flex: 1;
             background: transparent;
             border: none;
             outline: none;
-            padding: 14px 8px;
-            font-size: 1.1rem;
+            padding: 12px 8px;
+            font-size: 1.05rem
         }
 
-        .send {
+        .snd {
             background: var(--accent);
             color: #fff;
             border: none;
-            width: 44px;
-            height: 44px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center
         }
     </style>
 </head>
 
 <body>
     <div class="sidebar">
-        <div class="sidebar-top">
+        <div class="sb-top">
             <h2>Fuentes</h2>
-            <div class="src-count" id="srcCount">0 fuentes cargadas</div>
+            <div class="sb-count" id="cnt">0 fuentes</div>
         </div>
-        <div class="source-scroll" id="srcList"></div>
-        <div class="sidebar-bottom">
+        <div class="sb-scroll" id="sl"></div>
+        <div class="sb-bot">
             <button class="add-btn" onclick="togglePaste()">+ Añadir fuente</button>
-            <div class="paste-area" id="pasteArea">
-                <input type="text" id="srcName" placeholder="Nombre (ej: Manual_Motor.pdf)">
-                <textarea id="srcText" placeholder="Pega aquí el contenido del documento..."></textarea>
-                <button onclick="addRealSource()">Analizar y Añadir</button>
+            <div class="paste-box" id="pb">
+                <input type="text" id="sn" placeholder="Nombre (ej: Apuntes_Tema3)">
+                <textarea id="st" placeholder="Pega aquí cualquier texto..."></textarea>
+                <button onclick="addSrc()">Analizar</button>
             </div>
+        </div>
+        <div class="api-box">
+            <label>🔑 Gemini API Key (<a href="https://aistudio.google.com/apikey" target="_blank"
+                    style="color:var(--accent)">gratis</a>)</label>
+            <input type="password" id="apiKey" placeholder="AIza..." oninput="checkKey()">
+            <div class="api-status" id="apiSt" style="color:#94a3b8">Sin clave = modo local</div>
         </div>
     </div>
 
-    <div class="workspace">
-        <div class="ws-header">
-            <div class="ws-title">Libreta sin título</div>
-            <span style="color:#10b981; font-size:0.8rem; font-weight:500;">● IA Lista</span>
+    <div class="ws">
+        <div class="ws-h">
+            <div class="ws-t">Libreta de Investigación</div>
+            <span id="aiMode" style="font-size:.78rem;color:#10b981">● Modo Local</span>
         </div>
         <div class="chat" id="chat">
-            <div class="msg a">
-                Hola. Este es tu espacio de investigación. Puedes añadir cualquier fuente de texto a la izquierda (un
-                apunte, un manual, unas notas, lo que quieras) y yo me encargaré de analizarla y responder preguntas
-                sobre ella. ¡Empieza pegando tu primer documento!
-            </div>
+            <div class="msg a">Hola. Pega tus fuentes a la izquierda y pregúntame lo que quieras. Si añades una API Key
+                de Gemini, tendré inteligencia artificial real para hacer resúmenes, interpretar preguntas complejas y
+                razonar sobre cualquier tema.</div>
         </div>
-        <div class="float-wrap">
-            <div class="chips" id="chipBar"></div>
-            <div class="input-bar">
-                <input type="text" id="userIn" placeholder="Pregunta lo que quieras sobre tus fuentes..."
-                    onkeydown="if(event.key==='Enter') ask()">
-                <button class="send" onclick="ask()">→</button>
+        <div class="float">
+            <div class="chips" id="cbar"></div>
+            <div class="ibar">
+                <input type="text" id="ui" placeholder="Pregunta lo que quieras..."
+                    onkeydown="if(event.key==='Enter')ask()">
+                <button class="snd" onclick="ask()">→</button>
             </div>
         </div>
     </div>
 
     <script>
         let sources = [];
+        let geminiKey = '';
 
-        function renderSources() {
-            const list = document.getElementById('srcList');
-            document.getElementById('srcCount').innerText = sources.length + ' fuentes cargadas';
-            list.innerHTML = sources.map((s, i) => `
-                <div class="src">
-                    <span style="font-size:1.2rem;">📄</span>
-                    <div class="src-body">
-                        <div class="src-title">${s.name}</div>
-                        <div class="src-preview">${s.text.substring(0, 100)}...</div>
-                    </div>
-                    <button class="src-del" onclick="delSource(${i})">×</button>
-                </div>
-            `).join('');
+        function render() {
+            document.getElementById('cnt').innerText = sources.length + ' fuentes';
+            document.getElementById('sl').innerHTML = sources.map((s, i) => `
+                <div class="src"><span style="font-size:1.1rem">📄</span>
+                    <div class="src-b"><div class="src-t">${s.name}</div><div class="src-p">${s.text.substring(0, 90)}...</div></div>
+                    <button class="src-x" onclick="del(${i})">×</button>
+                </div>`).join('');
             updateChips();
         }
 
-        function delSource(idx) {
-            const name = sources[idx].name;
-            sources.splice(idx, 1);
-            renderSources();
-            sysMsg(`Fuente "${name}" eliminada del contexto.`);
-        }
+        function del(i) { const n = sources[i].name; sources.splice(i, 1); render(); sysMsg(`"${n}" eliminado.`); }
 
-        function togglePaste() {
-            const pa = document.getElementById('pasteArea');
-            pa.style.display = pa.style.display === 'none' ? 'block' : 'none';
-        }
+        function togglePaste() { const p = document.getElementById('pb'); p.style.display = p.style.display === 'none' ? 'block' : 'none' }
 
-        function addRealSource() {
-            const name = document.getElementById('srcName').value.trim() || `Fuente_${sources.length + 1}`;
-            const text = document.getElementById('srcText').value.trim();
-            if (!text) return alert('Pega contenido de texto para analizar.');
-            sources.push({ name, text });
-            document.getElementById('srcName').value = '';
-            document.getElementById('srcText').value = '';
-            document.getElementById('pasteArea').style.display = 'none';
-            renderSources();
-            sysMsg(`"${name}" analizado (${text.split(/\s+/).length} palabras). Listo para consultas.`);
+        function addSrc() {
+            const n = document.getElementById('sn').value.trim() || `Fuente_${sources.length + 1}`;
+            const t = document.getElementById('st').value.trim();
+            if (!t) return alert('Pega contenido de texto.');
+            sources.push({ name: n, text: t });
+            document.getElementById('sn').value = ''; document.getElementById('st').value = '';
+            document.getElementById('pb').style.display = 'none';
+            render(); sysMsg(`"${n}" analizado (${t.split(/\s+/).length} palabras).`);
         }
 
         function updateChips() {
-            const bar = document.getElementById('chipBar');
-            if (sources.length === 0) {
-                bar.innerHTML = '<div class="chip" onclick="togglePaste()">Añadir mi primera fuente</div>';
-                return;
-            }
-            let chips = sources.slice(0, 3).map(s => `<div class="chip" onclick="quickAsk('Resúmeme ${s.name}')">Resumir ${s.name.substring(0, 20)}</div>`);
-            chips.push(`<div class="chip" onclick="quickAsk('Haz un resumen global de todas las fuentes')">Resumen global</div>`);
-            bar.innerHTML = chips.join('');
+            const b = document.getElementById('cbar');
+            if (!sources.length) { b.innerHTML = '<div class="chip" onclick="togglePaste()">Añadir primera fuente</div>'; return; }
+            let c = sources.slice(0, 2).map(s => `<div class="chip" onclick="qk('Resume ${s.name}')">Resumir ${s.name.substring(0, 18)}</div>`);
+            c.push(`<div class="chip" onclick="qk('Haz un resumen global de todas mis fuentes')">Resumen global</div>`);
+            c.push(`<div class="chip" onclick="qk('¿Qué relación hay entre todas las fuentes?')">Relaciones</div>`);
+            b.innerHTML = c.join('');
         }
 
-        function quickAsk(q) { document.getElementById('userIn').value = q; ask(); }
+        function qk(q) { document.getElementById('ui').value = q; ask(); }
 
-        function ask() {
-            const input = document.getElementById('userIn');
+        function checkKey() {
+            geminiKey = document.getElementById('apiKey').value.trim();
+            const st = document.getElementById('apiSt');
+            const mode = document.getElementById('aiMode');
+            if (geminiKey.length > 10) { st.style.color = '#10b981'; st.innerText = 'IA Gemini activada'; mode.innerText = '● Gemini AI'; mode.style.color = '#1a73e8'; }
+            else { st.style.color = '#94a3b8'; st.innerText = 'Sin clave = modo local'; mode.innerText = '● Modo Local'; mode.style.color = '#10b981'; }
+        }
+
+        async function ask() {
+            const input = document.getElementById('ui');
             const chat = document.getElementById('chat');
             const q = input.value.trim();
             if (!q) return;
-
             chat.innerHTML += `<div class="msg q">${q}</div>`;
             input.value = '';
 
-            setTimeout(() => {
-                if (sources.length === 0) {
-                    chat.innerHTML += `<div class="msg a">No tengo fuentes cargadas todavía. Añade una a la izquierda pegando cualquier texto que quieras analizar.</div>`;
-                    chat.scrollTop = chat.scrollHeight;
-                    return;
+            // Show thinking
+            const thinkId = 'think_' + Date.now();
+            chat.innerHTML += `<div class="msg thinking" id="${thinkId}">Pensando...</div>`;
+            chat.scrollTop = chat.scrollHeight;
+
+            if (geminiKey.length > 10) {
+                // === GEMINI AI MODE ===
+                try {
+                    const srcContext = sources.map(s => `[FUENTE: ${s.name}]\n${s.text}`).join('\n\n---\n\n');
+                    const systemPrompt = `Eres un asistente de investigación. El usuario tiene las siguientes fuentes de conocimiento:\n\n${srcContext || '(No hay fuentes cargadas)'}\n\nResponde basándote en las fuentes cuando sea posible, citando el nombre del documento. Si la pregunta no está relacionada con las fuentes, responde igualmente con tu conocimiento general. Sé conciso y útil.`;
+
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: systemPrompt + '\n\nPregunta del usuario: ' + q }] }] })
+                    });
+                    const data = await res.json();
+                    const answer = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Error al obtener respuesta de Gemini.';
+                    document.getElementById(thinkId)?.remove();
+
+                    // Find cited sources
+                    const cited = sources.filter(s => answer.includes(s.name));
+                    const citeHTML = cited.length ? `<div class="cites">${cited.map(s => `<span class="cite">📄 ${s.name}</span>`).join('')}</div>` : '';
+                    chat.innerHTML += `<div class="msg a">${citeHTML}${answer}</div>`;
+                } catch (e) {
+                    document.getElementById(thinkId)?.remove();
+                    chat.innerHTML += `<div class="msg a" style="color:#ef4444">Error de conexión con Gemini: ${e.message}</div>`;
                 }
-
-                // Simple but flexible matching: search ALL source texts for ANY word from the query
-                const words = q.toLowerCase().split(/\s+/).filter(w => w.length > 3);
-                let bestMatches = [];
-
-                sources.forEach(s => {
-                    const lower = s.text.toLowerCase();
-                    let score = 0;
-                    words.forEach(w => { if (lower.includes(w)) score++; });
-                    if (score > 0) bestMatches.push({ src: s, score });
-                });
-
-                bestMatches.sort((a, b) => b.score - a.score);
-
-                let response = "";
-                let citeHTML = "";
-
-                if (bestMatches.length > 0) {
-                    const topHits = bestMatches.slice(0, 3);
-                    citeHTML = `<div class="cites">${topHits.map(h => `<span class="cite">📄 ${h.src.name}</span>`).join('')}</div>`;
-
-                    // Build answer from matched sources
-                    const combined = topHits.map(h => h.src.text).join(' ');
-
-                    // Extract relevant sentences
-                    const sentences = combined.split(/[.!?\n]+/).filter(s => s.trim().length > 10);
-                    const relevant = sentences.filter(s => words.some(w => s.toLowerCase().includes(w)));
-
-                    if (relevant.length > 0) {
-                        response = relevant.slice(0, 5).join('. ') + '.';
-                    } else {
-                        response = sentences.slice(0, 3).join('. ') + '.';
-                    }
+            } else {
+                // === LOCAL MODE ===
+                document.getElementById(thinkId)?.remove();
+                if (!sources.length) {
+                    chat.innerHTML += `<div class="msg a">Añade fuentes a la izquierda para empezar, o introduce una API Key de Gemini para tener IA completa sin necesidad de fuentes.</div>`;
                 } else {
-                    response = "No he encontrado coincidencias relevantes en tus fuentes actuales. Prueba con otros términos o añade más documentos al contexto.";
+                    const words = q.toLowerCase().split(/\s+/).filter(w => w.length > 2);
+                    let hits = [];
+                    sources.forEach(s => {
+                        const sentences = s.text.split(/[.!?\n]+/).filter(x => x.trim().length > 10);
+                        sentences.forEach(sent => {
+                            let score = 0;
+                            words.forEach(w => { if (sent.toLowerCase().includes(w)) score++; });
+                            if (score > 0) hits.push({ sent: sent.trim(), src: s.name, score });
+                        });
+                    });
+                    hits.sort((a, b) => b.score - a.score);
+
+                    if (hits.length) {
+                        const topHits = hits.slice(0, 6);
+                        const citedNames = [...new Set(topHits.map(h => h.src))];
+                        const citeHTML = `<div class="cites">${citedNames.map(n => `<span class="cite">📄 ${n}</span>`).join('')}</div>`;
+                        const answer = topHits.map(h => h.sent).join('. ') + '.';
+                        chat.innerHTML += `<div class="msg a">${citeHTML}${answer}</div>`;
+                    } else {
+                        // Global summary fallback
+                        if (q.includes('resumen') || q.includes('global') || q.includes('relacion')) {
+                            const summary = sources.map(s => `• ${s.name}: ${s.text.substring(0, 150)}...`).join('\n');
+                            const citeHTML = `<div class="cites">${sources.map(s => `<span class="cite">📄 ${s.name}</span>`).join('')}</div>`;
+                            chat.innerHTML += `<div class="msg a">${citeHTML}Resumen de tus fuentes:\n\n${summary}</div>`;
+                        } else {
+                            chat.innerHTML += `<div class="msg a">No encontré coincidencias en tus fuentes. Añade una API Key de Gemini para poder responder cualquier pregunta con inteligencia artificial real.</div>`;
+                        }
+                    }
                 }
-
-                chat.innerHTML += `<div class="msg a">${citeHTML}${response}</div>`;
-                chat.scrollTop = chat.scrollHeight;
-            }, 600);
-        }
-
-        function sysMsg(t) {
-            const chat = document.getElementById('chat');
-            chat.innerHTML += `<div style="text-align:center;font-size:0.8rem;color:#94a3b8;font-style:italic;">IA: ${t}</div>`;
+            }
             chat.scrollTop = chat.scrollHeight;
         }
 
-        renderSources();
+        function sysMsg(t) {
+            const c = document.getElementById('chat');
+            c.innerHTML += `<div style="text-align:center;font-size:.78rem;color:#94a3b8;font-style:italic">IA: ${t}</div>`;
+            c.scrollTop = c.scrollHeight;
+        }
+
+        render();
     </script>
 </body>
 
