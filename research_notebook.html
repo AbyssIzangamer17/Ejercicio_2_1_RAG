@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Investigación RAG - NotebookLM Industrial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fcfcfc;
+            --sidebar: #f1f3f4;
+            --accent: #1a73e8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: var(--sidebar);
+            border-right: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            font-size: 0.8rem;
+            color: #5f6368;
+            text-transform: uppercase;
+        }
+
+        .doc {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px 100px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .msg {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .ai {
+            color: #3c4043;
+            border-left: 3px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        .tag {
+            background: #e8f0fe;
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        .input-box {
+            background: #f1f3f4;
+            border-radius: 25px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>Fuentes Indexadas</h2>
+        <div class="doc">📄 Manual_Motor_M101.pdf</div>
+        <div class="doc">📄 Protocolo_K1.docx</div>
+        <div class="doc">📄 Guia_TIA_Portal.pdf</div>
+    </div>
+    <div class="content">
+        <div class="chat" id="chat">
+            <div class="msg ai">Soy tu asistente de investigación industrial. He analizado tus manuales. ¿Qué quieres
+                consultar?</div>
+        </div>
+        <div class="input-box">
+            <input type="text" id="q" placeholder="Escribe tu consulta sobre mantenimiento o seguridad..."
+                onkeydown="if(event.key==='Enter') runRAG()">
+            <button onclick="runRAG()">→</button>
+        </div>
+    </div>
+    <script>
+        const kb = { "mantenimiento": "Cada 5000h (Manual M101)", "k1": "Relé de seguridad critico (Protocolo K1)", "ip": "192.168.0.1 (Guia TIA Portal)" };
+        function runRAG() {
+            const i = document.getElementById('q');
+            const c = document.getElementById('chat');
+            const val = i.value.toLowerCase();
+            if (!val) return;
+            c.innerHTML += `<div class="msg"><b>Tú:</b> ${i.value}</div>`;
+            setTimeout(() => {
+                let r = "No hay datos exactos en las fuentes.";
+                let s = "";
+                for (let k in kb) if (val.includes(k)) { r = kb[k]; s = `<span class="tag">FUENTE: ${k.toUpperCase()}</span><br>`; }
+                c.innerHTML += `<div class="msg ai">${s}${r}</div>`;
+                c.scrollTop = c.scrollHeight;
+            }, 500);
+            i.value = '';
+        }
+    </script>
+</body>
+
+</html>
