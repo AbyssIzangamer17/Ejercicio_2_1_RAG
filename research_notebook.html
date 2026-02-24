@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>NotebookLM | Research Assistant</title>
+    <title>NotebookLM | AI Research Assistant</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&family=Roboto:wght@400;500&display=swap"
         rel="stylesheet">
@@ -189,6 +189,14 @@
             width: 100%
         }
 
+        .sb-footer {
+            padding: 12px 16px;
+            text-align: center;
+            font-size: .68rem;
+            color: #9aa0a6;
+            border-top: 1px solid var(--bd)
+        }
+
         .ws {
             flex: 1;
             display: flex;
@@ -342,14 +350,6 @@
             align-items: center;
             justify-content: center
         }
-
-        .sb-footer {
-            padding: 12px 16px;
-            text-align: center;
-            font-size: .68rem;
-            color: #9aa0a6;
-            border-top: 1px solid var(--bd)
-        }
     </style>
 </head>
 
@@ -368,23 +368,23 @@
                 <button onclick="addSrc()">Analizar y Añadir</button>
             </div>
         </div>
-        <div class="sb-footer">NotebookLM Industrial v7<br>Izan Urios · 3R</div>
+        <div class="sb-footer">NotebookLM Industrial v8<br>Motor: Pollinations AI (Gratis)<br>Izan Urios · 3R</div>
     </div>
 
     <div class="ws">
         <div class="ws-h">
             <div class="ws-t">Libreta de Investigación</div>
-            <span style="color:#10b981;font-size:.78rem;font-weight:500">● Motor RAG activo</span>
+            <span style="color:#10b981;font-size:.78rem;font-weight:500">● IA OpenCode activa</span>
         </div>
         <div class="chat" id="chat">
-            <div class="msg a">Bienvenido a tu libreta de investigación. Pega cualquier texto a la izquierda (apuntes,
-                manuales, artículos, lo que necesites) y pregúntame lo que quieras. Puedo resumir, comparar, encontrar
-                relaciones y responder preguntas complejas sobre tus documentos.</div>
+            <div class="msg a">Bienvenido a tu libreta de investigación con IA integrada. Pega cualquier texto a la
+                izquierda y pregúntame lo que quieras. Uso inteligencia artificial real (Pollinations AI, 100% gratuita,
+                sin API key) para resumir, analizar, comparar y responder cualquier pregunta sobre tus documentos.</div>
         </div>
         <div class="float">
             <div class="chips" id="cbar"></div>
             <div class="ibar">
-                <input type="text" id="ui" placeholder="Pregunta lo que quieras sobre tus fuentes..."
+                <input type="text" id="ui" placeholder="Pregunta lo que quieras..."
                     onkeydown="if(event.key==='Enter')ask()">
                 <button class="snd" onclick="ask()">→</button>
             </div>
@@ -405,7 +405,7 @@
             updateChips();
         }
 
-        function del(i) { const n = sources[i].name; sources.splice(i, 1); render(); sys(`Fuente "${n}" eliminada del contexto.`); }
+        function del(i) { const n = sources[i].name; sources.splice(i, 1); render(); sys(`"${n}" eliminado del contexto.`); }
         function togglePaste() { const p = document.getElementById('pb'); p.style.display = p.style.display === 'none' ? 'block' : 'none'; }
 
         function addSrc() {
@@ -415,159 +415,75 @@
             sources.push({ name: n, text: t });
             document.getElementById('sn').value = ''; document.getElementById('st').value = '';
             document.getElementById('pb').style.display = 'none';
-            render();
-            sys(`"${n}" analizado (${t.split(/\s+/).length} palabras). Listo para consultas.`);
+            render(); sys(`"${n}" analizado (${t.split(/\s+/).length} palabras).`);
         }
 
         function updateChips() {
             const b = document.getElementById('cbar');
             if (!sources.length) { b.innerHTML = '<div class="chip" onclick="togglePaste()">Añadir primera fuente</div>'; return; }
             let c = [];
-            if (sources.length >= 1) c.push(`<div class="chip" onclick="qk('Haz un resumen global de todas mis fuentes')">Resumen global</div>`);
-            if (sources.length >= 2) c.push(`<div class="chip" onclick="qk('¿Qué relación hay entre mis fuentes?')">Encontrar relaciones</div>`);
-            c.push(...sources.slice(0, 2).map(s => `<div class="chip" onclick="qk('Explica los puntos clave de ${s.name}')">Clave: ${s.name.substring(0, 16)}</div>`));
+            c.push(`<div class="chip" onclick="qk('Haz un resumen global de todas mis fuentes')">Resumen global</div>`);
+            if (sources.length >= 2) c.push(`<div class="chip" onclick="qk('¿Qué relación hay entre mis fuentes?')">Relaciones</div>`);
+            c.push(...sources.slice(0, 2).map(s => `<div class="chip" onclick="qk('Explica los puntos clave de ${s.name}')">Clave: ${s.name.substring(0, 15)}</div>`));
             c.push(`<div class="chip" onclick="qk('¿Qué conclusiones puedo sacar?')">Conclusiones</div>`);
             b.innerHTML = c.join('');
         }
 
         function qk(q) { document.getElementById('ui').value = q; ask(); }
 
-        // === INTELLIGENT LOCAL RAG ENGINE ===
-        function tokenize(text) {
-            return text.toLowerCase().replace(/[^\wáéíóúüñ\s]/g, ' ').split(/\s+/).filter(w => w.length > 2);
-        }
-
-        // TF-IDF-like scoring
-        function scoreSentence(sentence, queryTokens) {
-            const sentTokens = tokenize(sentence);
-            if (!sentTokens.length) return 0;
-            let score = 0;
-            queryTokens.forEach(qt => {
-                sentTokens.forEach(st => {
-                    if (st === qt) score += 3;          // exact match
-                    else if (st.includes(qt) || qt.includes(st)) score += 1.5; // partial
-                });
-            });
-            // Normalize by sentence length to avoid bias toward long sentences
-            return score / Math.sqrt(sentTokens.length);
-        }
-
-        function extractSentences(text) {
-            return text.split(/(?<=[.!?\n])\s+/).map(s => s.trim()).filter(s => s.length > 15);
-        }
-
-        function generateSummary(text, maxSentences = 4) {
-            const sentences = extractSentences(text);
-            if (sentences.length <= maxSentences) return sentences.join(' ');
-            // Pick sentences spread across the document
-            const step = Math.floor(sentences.length / maxSentences);
-            let picked = [];
-            for (let i = 0; i < maxSentences; i++) picked.push(sentences[Math.min(i * step, sentences.length - 1)]);
-            return picked.join(' ');
-        }
-
-        function ask() {
+        async function ask() {
             const input = document.getElementById('ui');
             const chat = document.getElementById('chat');
             const q = input.value.trim();
             if (!q) return;
-            const ql = q.toLowerCase();
 
             chat.innerHTML += `<div class="msg q">${q}</div>`;
             input.value = '';
 
-            const thinkId = 'think_' + Date.now();
-            chat.innerHTML += `<div class="msg thinking" id="${thinkId}">Analizando fuentes...</div>`;
+            const thinkId = 't_' + Date.now();
+            chat.innerHTML += `<div class="msg thinking" id="${thinkId}">Pensando con IA...</div>`;
             chat.scrollTop = chat.scrollHeight;
 
-            setTimeout(() => {
+            // Build context from all sources
+            const srcContext = sources.map(s => `[DOCUMENTO: ${s.name}]\n${s.text}`).join('\n\n---\n\n');
+
+            const systemPrompt = `Eres un asistente de investigación inteligente similar a NotebookLM de Google. El usuario tiene estas fuentes de conocimiento:
+
+${srcContext || '(No hay fuentes cargadas todavía)'}
+
+INSTRUCCIONES:
+- Responde en español.
+- Si la pregunta se relaciona con las fuentes, basa tu respuesta en ellas y cita el nombre del documento entre corchetes [nombre].
+- Si la pregunta NO se relaciona con las fuentes, responde igualmente con tu conocimiento general.
+- Puedes hacer resúmenes globales, encontrar relaciones entre documentos, extraer conclusiones, comparar información.
+- Sé conciso pero completo.`;
+
+            try {
+                const res = await fetch('https://text.pollinations.ai/openai', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: 'openai',
+                        messages: [
+                            { role: 'system', content: systemPrompt },
+                            { role: 'user', content: q }
+                        ]
+                    })
+                });
+                const data = await res.json();
+                const answer = data.choices?.[0]?.message?.content || 'No se pudo obtener respuesta.';
                 document.getElementById(thinkId)?.remove();
 
-                if (!sources.length) {
-                    chat.innerHTML += `<div class="msg a">No tengo fuentes cargadas. Añade un documento pegando texto a la izquierda y podré analizarlo, resumirlo o responder preguntas sobre él.</div>`;
-                    chat.scrollTop = chat.scrollHeight; return;
-                }
+                // Extract cited sources
+                const cited = sources.filter(s => answer.includes(s.name));
+                const citeHTML = cited.length ? `<div class="cites">${cited.map(s => `<span class="cite">📄 ${s.name}</span>`).join('')}</div>` : '';
 
-                let response = '';
-                let citedNames = [];
-
-                // === GLOBAL SUMMARY ===
-                if (ql.includes('resumen global') || ql.includes('resumen de todo') || ql.includes('resume todo')) {
-                    response = 'Resumen global de tus fuentes:\n\n';
-                    sources.forEach(s => {
-                        response += `📄 **${s.name}**\n${generateSummary(s.text)}\n\n`;
-                        citedNames.push(s.name);
-                    });
-                }
-                // === RELATIONSHIPS ===
-                else if (ql.includes('relación') || ql.includes('relacion') || ql.includes('comparar') || ql.includes('común')) {
-                    const allTokenSets = sources.map(s => new Set(tokenize(s.text)));
-                    let common = [];
-                    for (let i = 0; i < allTokenSets.length; i++) {
-                        for (let j = i + 1; j < allTokenSets.length; j++) {
-                            const shared = [...allTokenSets[i]].filter(t => allTokenSets[j].has(t) && t.length > 4);
-                            if (shared.length) common.push({ a: sources[i].name, b: sources[j].name, words: shared.slice(0, 10) });
-                        }
-                    }
-                    if (common.length) {
-                        response = 'He encontrado estas relaciones entre tus fuentes:\n\n';
-                        common.forEach(c => { response += `• "${c.a}" y "${c.b}" comparten conceptos: ${c.words.join(', ')}.\n`; });
-                        citedNames = sources.map(s => s.name);
-                    } else {
-                        response = 'No he encontrado temas comunes evidentes entre tus fuentes. Parecen tratar temas diferentes.';
-                        citedNames = sources.map(s => s.name);
-                    }
-                }
-                // === CONCLUSIONS ===
-                else if (ql.includes('conclusi')) {
-                    response = 'Conclusiones basadas en tus fuentes:\n\n';
-                    sources.forEach(s => {
-                        const sents = extractSentences(s.text);
-                        const last = sents.slice(-2).join(' ');
-                        response += `📄 ${s.name}: ${last}\n\n`;
-                        citedNames.push(s.name);
-                    });
-                }
-                // === SINGLE SOURCE SUMMARY ===
-                else if (ql.includes('resume') || ql.includes('resumen') || ql.includes('explica') || ql.includes('puntos clave')) {
-                    let target = sources.find(s => ql.includes(s.name.toLowerCase().split('.')[0]) || ql.includes(s.name.toLowerCase()));
-                    if (!target) target = sources[0];
-                    response = generateSummary(target.text, 5);
-                    citedNames.push(target.name);
-                }
-                // === SEMANTIC SEARCH ===
-                else {
-                    const queryTokens = tokenize(q);
-                    let allHits = [];
-
-                    sources.forEach(s => {
-                        const sentences = extractSentences(s.text);
-                        sentences.forEach(sent => {
-                            const score = scoreSentence(sent, queryTokens);
-                            if (score > 0.3) allHits.push({ sent, src: s.name, score });
-                        });
-                    });
-
-                    allHits.sort((a, b) => b.score - a.score);
-
-                    if (allHits.length) {
-                        const top = allHits.slice(0, 5);
-                        citedNames = [...new Set(top.map(h => h.src))];
-                        response = top.map(h => h.sent).join('. ') + '.';
-                    } else {
-                        // Fallback: show most relevant fragments via broader matching
-                        response = 'No he encontrado coincidencias directas. Aquí tienes un extracto de cada fuente que podría ser relevante:\n\n';
-                        sources.forEach(s => {
-                            response += `📄 ${s.name}: ${s.text.substring(0, 200)}...\n\n`;
-                            citedNames.push(s.name);
-                        });
-                    }
-                }
-
-                const citeHTML = citedNames.length ? `<div class="cites">${[...new Set(citedNames)].map(n => `<span class="cite">📄 ${n}</span>`).join('')}</div>` : '';
-                chat.innerHTML += `<div class="msg a">${citeHTML}${response}</div>`;
-                chat.scrollTop = chat.scrollHeight;
-            }, 500);
+                chat.innerHTML += `<div class="msg a">${citeHTML}${answer}</div>`;
+            } catch (e) {
+                document.getElementById(thinkId)?.remove();
+                chat.innerHTML += `<div class="msg a" style="border-color:#fca5a5">Error de conexión: ${e.message}. Comprueba tu conexión a internet.</div>`;
+            }
+            chat.scrollTop = chat.scrollHeight;
         }
 
         function sys(t) {
