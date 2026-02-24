@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>NotebookLM Industrial | AI Research Assistant</title>
+    <title>NotebookLM | Research Assistant</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&family=Roboto:wght@400;500&display=swap"
         rel="stylesheet">
@@ -49,7 +49,7 @@
             font-size: 1.05rem
         }
 
-        .sb-count {
+        .sb-cnt {
             font-size: .72rem;
             color: var(--t2);
             margin-top: 4px
@@ -71,7 +71,8 @@
             align-items: flex-start;
             gap: 10px;
             position: relative;
-            transition: .2s
+            transition: .2s;
+            cursor: pointer
         }
 
         .src:hover {
@@ -86,14 +87,14 @@
 
         .src-t {
             font-weight: 500;
-            font-size: .88rem;
+            font-size: .85rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis
         }
 
         .src-p {
-            font-size: .72rem;
+            font-size: .7rem;
             color: var(--t2);
             margin-top: 3px;
             display: -webkit-box;
@@ -112,11 +113,12 @@
             cursor: pointer;
             font-size: 1.2rem;
             border-radius: 50%;
-            width: 26px;
-            height: 26px;
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
-            justify-content: center
+            justify-content: center;
+            transition: .15s
         }
 
         .src-x:hover {
@@ -131,13 +133,13 @@
 
         .add-btn {
             width: 100%;
-            padding: 13px;
+            padding: 12px;
             border: 2px dashed #bdc1c6;
             border-radius: 12px;
             background: transparent;
             color: var(--accent);
             font-weight: 500;
-            font-size: .88rem;
+            font-size: .85rem;
             cursor: pointer;
             transition: .2s
         }
@@ -155,12 +157,12 @@
 
         .paste-box textarea {
             width: 100%;
-            height: 90px;
+            height: 100px;
             border: 1px solid var(--bd);
             border-radius: 8px;
             padding: 10px;
-            font-size: .83rem;
-            resize: none;
+            font-size: .82rem;
+            resize: vertical;
             outline: none;
             font-family: inherit
         }
@@ -170,8 +172,8 @@
             margin-bottom: 6px;
             border: 1px solid var(--bd);
             border-radius: 8px;
-            padding: 8px;
-            font-size: .83rem;
+            padding: 7px;
+            font-size: .82rem;
             outline: none
         }
 
@@ -183,29 +185,8 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: 500;
-            margin-top: 8px
-        }
-
-        /* API Key Config */
-        .api-box {
-            padding: 12px;
-            border-top: 1px solid var(--bd);
-            font-size: .78rem
-        }
-
-        .api-box input {
-            width: 100%;
-            border: 1px solid var(--bd);
-            border-radius: 6px;
-            padding: 6px 8px;
-            font-size: .78rem;
-            outline: none;
-            margin-top: 6px
-        }
-
-        .api-status {
-            margin-top: 4px;
-            font-size: .7rem
+            margin-top: 8px;
+            width: 100%
         }
 
         .ws {
@@ -232,22 +213,23 @@
         .chat {
             flex: 1;
             overflow-y: auto;
-            padding: 36px 11% 170px 11%;
+            padding: 32px 10% 180px 10%;
             display: flex;
             flex-direction: column;
-            gap: 32px
+            gap: 28px;
+            scroll-behavior: smooth
         }
 
         .msg {
             max-width: 860px;
             line-height: 1.75;
-            animation: up .35s ease
+            animation: up .3s ease
         }
 
         @keyframes up {
             from {
                 opacity: 0;
-                transform: translateY(16px)
+                transform: translateY(14px)
             }
 
             to {
@@ -258,18 +240,18 @@
         .q {
             font-family: 'Google Sans';
             font-weight: 500;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             border-top: 1px solid #f1f3f4;
-            padding-top: 24px
+            padding-top: 20px
         }
 
         .a {
             background: #f8fafc;
-            padding: 26px 30px;
-            border-radius: 22px;
+            padding: 24px 28px;
+            border-radius: 20px;
             border: 1px solid #edf2f7;
             color: #3c4043;
-            font-size: 1rem;
+            font-size: .98rem;
             white-space: pre-wrap
         }
 
@@ -277,44 +259,45 @@
             display: flex;
             gap: 6px;
             flex-wrap: wrap;
-            margin-bottom: 12px
+            margin-bottom: 10px
         }
 
         .cite {
             background: #e8f0fe;
             color: #1967d2;
-            font-size: .7rem;
+            font-size: .68rem;
             font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 6px
+            padding: 2px 9px;
+            border-radius: 5px
         }
 
         .thinking {
             color: var(--accent);
             font-style: italic;
-            font-size: .9rem
+            font-size: .88rem
         }
 
         .float {
             position: absolute;
-            bottom: 28px;
-            left: 11%;
-            right: 11%
+            bottom: 24px;
+            left: 10%;
+            right: 10%
         }
 
         .chips {
             display: flex;
             gap: 8px;
             margin-bottom: 10px;
-            overflow-x: auto
+            overflow-x: auto;
+            padding: 2px 0
         }
 
         .chip {
             background: #fff;
             border: 1px solid var(--bd);
-            padding: 9px 18px;
-            border-radius: 22px;
-            font-size: .85rem;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: .82rem;
             cursor: pointer;
             white-space: nowrap;
             color: #3c4043;
@@ -330,11 +313,11 @@
 
         .ibar {
             background: #f1f3f4;
-            border-radius: 30px;
+            border-radius: 28px;
             padding: 8px 18px;
             display: flex;
             align-items: center;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, .08)
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .07)
         }
 
         .ibar input {
@@ -342,22 +325,30 @@
             background: transparent;
             border: none;
             outline: none;
-            padding: 12px 8px;
-            font-size: 1.05rem
+            padding: 11px 8px;
+            font-size: 1rem
         }
 
         .snd {
             background: var(--accent);
             color: #fff;
             border: none;
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             justify-content: center
+        }
+
+        .sb-footer {
+            padding: 12px 16px;
+            text-align: center;
+            font-size: .68rem;
+            color: #9aa0a6;
+            border-top: 1px solid var(--bd)
         }
     </style>
 </head>
@@ -366,39 +357,34 @@
     <div class="sidebar">
         <div class="sb-top">
             <h2>Fuentes</h2>
-            <div class="sb-count" id="cnt">0 fuentes</div>
+            <div class="sb-cnt" id="cnt">0 fuentes</div>
         </div>
         <div class="sb-scroll" id="sl"></div>
         <div class="sb-bot">
             <button class="add-btn" onclick="togglePaste()">+ Añadir fuente</button>
             <div class="paste-box" id="pb">
-                <input type="text" id="sn" placeholder="Nombre (ej: Apuntes_Tema3)">
-                <textarea id="st" placeholder="Pega aquí cualquier texto..."></textarea>
-                <button onclick="addSrc()">Analizar</button>
+                <input type="text" id="sn" placeholder="Nombre (ej: Apuntes_Tema5.pdf)">
+                <textarea id="st" placeholder="Pega aquí cualquier texto que quieras analizar..."></textarea>
+                <button onclick="addSrc()">Analizar y Añadir</button>
             </div>
         </div>
-        <div class="api-box">
-            <label>🔑 Gemini API Key (<a href="https://aistudio.google.com/apikey" target="_blank"
-                    style="color:var(--accent)">gratis</a>)</label>
-            <input type="password" id="apiKey" placeholder="AIza..." oninput="checkKey()">
-            <div class="api-status" id="apiSt" style="color:#94a3b8">Sin clave = modo local</div>
-        </div>
+        <div class="sb-footer">NotebookLM Industrial v7<br>Izan Urios · 3R</div>
     </div>
 
     <div class="ws">
         <div class="ws-h">
             <div class="ws-t">Libreta de Investigación</div>
-            <span id="aiMode" style="font-size:.78rem;color:#10b981">● Modo Local</span>
+            <span style="color:#10b981;font-size:.78rem;font-weight:500">● Motor RAG activo</span>
         </div>
         <div class="chat" id="chat">
-            <div class="msg a">Hola. Pega tus fuentes a la izquierda y pregúntame lo que quieras. Si añades una API Key
-                de Gemini, tendré inteligencia artificial real para hacer resúmenes, interpretar preguntas complejas y
-                razonar sobre cualquier tema.</div>
+            <div class="msg a">Bienvenido a tu libreta de investigación. Pega cualquier texto a la izquierda (apuntes,
+                manuales, artículos, lo que necesites) y pregúntame lo que quieras. Puedo resumir, comparar, encontrar
+                relaciones y responder preguntas complejas sobre tus documentos.</div>
         </div>
         <div class="float">
             <div class="chips" id="cbar"></div>
             <div class="ibar">
-                <input type="text" id="ui" placeholder="Pregunta lo que quieras..."
+                <input type="text" id="ui" placeholder="Pregunta lo que quieras sobre tus fuentes..."
                     onkeydown="if(event.key==='Enter')ask()">
                 <button class="snd" onclick="ask()">→</button>
             </div>
@@ -407,21 +393,20 @@
 
     <script>
         let sources = [];
-        let geminiKey = '';
 
         function render() {
             document.getElementById('cnt').innerText = sources.length + ' fuentes';
             document.getElementById('sl').innerHTML = sources.map((s, i) => `
-                <div class="src"><span style="font-size:1.1rem">📄</span>
-                    <div class="src-b"><div class="src-t">${s.name}</div><div class="src-p">${s.text.substring(0, 90)}...</div></div>
-                    <button class="src-x" onclick="del(${i})">×</button>
-                </div>`).join('');
+            <div class="src" onclick="qk('Resume el contenido de ${s.name}')">
+                <span style="font-size:1.1rem">📄</span>
+                <div class="src-b"><div class="src-t">${s.name}</div><div class="src-p">${s.text.substring(0, 100)}...</div></div>
+                <button class="src-x" onclick="event.stopPropagation();del(${i})">×</button>
+            </div>`).join('');
             updateChips();
         }
 
-        function del(i) { const n = sources[i].name; sources.splice(i, 1); render(); sysMsg(`"${n}" eliminado.`); }
-
-        function togglePaste() { const p = document.getElementById('pb'); p.style.display = p.style.display === 'none' ? 'block' : 'none' }
+        function del(i) { const n = sources[i].name; sources.splice(i, 1); render(); sys(`Fuente "${n}" eliminada del contexto.`); }
+        function togglePaste() { const p = document.getElementById('pb'); p.style.display = p.style.display === 'none' ? 'block' : 'none'; }
 
         function addSrc() {
             const n = document.getElementById('sn').value.trim() || `Fuente_${sources.length + 1}`;
@@ -430,104 +415,162 @@
             sources.push({ name: n, text: t });
             document.getElementById('sn').value = ''; document.getElementById('st').value = '';
             document.getElementById('pb').style.display = 'none';
-            render(); sysMsg(`"${n}" analizado (${t.split(/\s+/).length} palabras).`);
+            render();
+            sys(`"${n}" analizado (${t.split(/\s+/).length} palabras). Listo para consultas.`);
         }
 
         function updateChips() {
             const b = document.getElementById('cbar');
             if (!sources.length) { b.innerHTML = '<div class="chip" onclick="togglePaste()">Añadir primera fuente</div>'; return; }
-            let c = sources.slice(0, 2).map(s => `<div class="chip" onclick="qk('Resume ${s.name}')">Resumir ${s.name.substring(0, 18)}</div>`);
-            c.push(`<div class="chip" onclick="qk('Haz un resumen global de todas mis fuentes')">Resumen global</div>`);
-            c.push(`<div class="chip" onclick="qk('¿Qué relación hay entre todas las fuentes?')">Relaciones</div>`);
+            let c = [];
+            if (sources.length >= 1) c.push(`<div class="chip" onclick="qk('Haz un resumen global de todas mis fuentes')">Resumen global</div>`);
+            if (sources.length >= 2) c.push(`<div class="chip" onclick="qk('¿Qué relación hay entre mis fuentes?')">Encontrar relaciones</div>`);
+            c.push(...sources.slice(0, 2).map(s => `<div class="chip" onclick="qk('Explica los puntos clave de ${s.name}')">Clave: ${s.name.substring(0, 16)}</div>`));
+            c.push(`<div class="chip" onclick="qk('¿Qué conclusiones puedo sacar?')">Conclusiones</div>`);
             b.innerHTML = c.join('');
         }
 
         function qk(q) { document.getElementById('ui').value = q; ask(); }
 
-        function checkKey() {
-            geminiKey = document.getElementById('apiKey').value.trim();
-            const st = document.getElementById('apiSt');
-            const mode = document.getElementById('aiMode');
-            if (geminiKey.length > 10) { st.style.color = '#10b981'; st.innerText = 'IA Gemini activada'; mode.innerText = '● Gemini AI'; mode.style.color = '#1a73e8'; }
-            else { st.style.color = '#94a3b8'; st.innerText = 'Sin clave = modo local'; mode.innerText = '● Modo Local'; mode.style.color = '#10b981'; }
+        // === INTELLIGENT LOCAL RAG ENGINE ===
+        function tokenize(text) {
+            return text.toLowerCase().replace(/[^\wáéíóúüñ\s]/g, ' ').split(/\s+/).filter(w => w.length > 2);
         }
 
-        async function ask() {
+        // TF-IDF-like scoring
+        function scoreSentence(sentence, queryTokens) {
+            const sentTokens = tokenize(sentence);
+            if (!sentTokens.length) return 0;
+            let score = 0;
+            queryTokens.forEach(qt => {
+                sentTokens.forEach(st => {
+                    if (st === qt) score += 3;          // exact match
+                    else if (st.includes(qt) || qt.includes(st)) score += 1.5; // partial
+                });
+            });
+            // Normalize by sentence length to avoid bias toward long sentences
+            return score / Math.sqrt(sentTokens.length);
+        }
+
+        function extractSentences(text) {
+            return text.split(/(?<=[.!?\n])\s+/).map(s => s.trim()).filter(s => s.length > 15);
+        }
+
+        function generateSummary(text, maxSentences = 4) {
+            const sentences = extractSentences(text);
+            if (sentences.length <= maxSentences) return sentences.join(' ');
+            // Pick sentences spread across the document
+            const step = Math.floor(sentences.length / maxSentences);
+            let picked = [];
+            for (let i = 0; i < maxSentences; i++) picked.push(sentences[Math.min(i * step, sentences.length - 1)]);
+            return picked.join(' ');
+        }
+
+        function ask() {
             const input = document.getElementById('ui');
             const chat = document.getElementById('chat');
             const q = input.value.trim();
             if (!q) return;
+            const ql = q.toLowerCase();
+
             chat.innerHTML += `<div class="msg q">${q}</div>`;
             input.value = '';
 
-            // Show thinking
             const thinkId = 'think_' + Date.now();
-            chat.innerHTML += `<div class="msg thinking" id="${thinkId}">Pensando...</div>`;
+            chat.innerHTML += `<div class="msg thinking" id="${thinkId}">Analizando fuentes...</div>`;
             chat.scrollTop = chat.scrollHeight;
 
-            if (geminiKey.length > 10) {
-                // === GEMINI AI MODE ===
-                try {
-                    const srcContext = sources.map(s => `[FUENTE: ${s.name}]\n${s.text}`).join('\n\n---\n\n');
-                    const systemPrompt = `Eres un asistente de investigación. El usuario tiene las siguientes fuentes de conocimiento:\n\n${srcContext || '(No hay fuentes cargadas)'}\n\nResponde basándote en las fuentes cuando sea posible, citando el nombre del documento. Si la pregunta no está relacionada con las fuentes, responde igualmente con tu conocimiento general. Sé conciso y útil.`;
-
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ contents: [{ parts: [{ text: systemPrompt + '\n\nPregunta del usuario: ' + q }] }] })
-                    });
-                    const data = await res.json();
-                    const answer = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Error al obtener respuesta de Gemini.';
-                    document.getElementById(thinkId)?.remove();
-
-                    // Find cited sources
-                    const cited = sources.filter(s => answer.includes(s.name));
-                    const citeHTML = cited.length ? `<div class="cites">${cited.map(s => `<span class="cite">📄 ${s.name}</span>`).join('')}</div>` : '';
-                    chat.innerHTML += `<div class="msg a">${citeHTML}${answer}</div>`;
-                } catch (e) {
-                    document.getElementById(thinkId)?.remove();
-                    chat.innerHTML += `<div class="msg a" style="color:#ef4444">Error de conexión con Gemini: ${e.message}</div>`;
-                }
-            } else {
-                // === LOCAL MODE ===
+            setTimeout(() => {
                 document.getElementById(thinkId)?.remove();
-                if (!sources.length) {
-                    chat.innerHTML += `<div class="msg a">Añade fuentes a la izquierda para empezar, o introduce una API Key de Gemini para tener IA completa sin necesidad de fuentes.</div>`;
-                } else {
-                    const words = q.toLowerCase().split(/\s+/).filter(w => w.length > 2);
-                    let hits = [];
-                    sources.forEach(s => {
-                        const sentences = s.text.split(/[.!?\n]+/).filter(x => x.trim().length > 10);
-                        sentences.forEach(sent => {
-                            let score = 0;
-                            words.forEach(w => { if (sent.toLowerCase().includes(w)) score++; });
-                            if (score > 0) hits.push({ sent: sent.trim(), src: s.name, score });
-                        });
-                    });
-                    hits.sort((a, b) => b.score - a.score);
 
-                    if (hits.length) {
-                        const topHits = hits.slice(0, 6);
-                        const citedNames = [...new Set(topHits.map(h => h.src))];
-                        const citeHTML = `<div class="cites">${citedNames.map(n => `<span class="cite">📄 ${n}</span>`).join('')}</div>`;
-                        const answer = topHits.map(h => h.sent).join('. ') + '.';
-                        chat.innerHTML += `<div class="msg a">${citeHTML}${answer}</div>`;
-                    } else {
-                        // Global summary fallback
-                        if (q.includes('resumen') || q.includes('global') || q.includes('relacion')) {
-                            const summary = sources.map(s => `• ${s.name}: ${s.text.substring(0, 150)}...`).join('\n');
-                            const citeHTML = `<div class="cites">${sources.map(s => `<span class="cite">📄 ${s.name}</span>`).join('')}</div>`;
-                            chat.innerHTML += `<div class="msg a">${citeHTML}Resumen de tus fuentes:\n\n${summary}</div>`;
-                        } else {
-                            chat.innerHTML += `<div class="msg a">No encontré coincidencias en tus fuentes. Añade una API Key de Gemini para poder responder cualquier pregunta con inteligencia artificial real.</div>`;
+                if (!sources.length) {
+                    chat.innerHTML += `<div class="msg a">No tengo fuentes cargadas. Añade un documento pegando texto a la izquierda y podré analizarlo, resumirlo o responder preguntas sobre él.</div>`;
+                    chat.scrollTop = chat.scrollHeight; return;
+                }
+
+                let response = '';
+                let citedNames = [];
+
+                // === GLOBAL SUMMARY ===
+                if (ql.includes('resumen global') || ql.includes('resumen de todo') || ql.includes('resume todo')) {
+                    response = 'Resumen global de tus fuentes:\n\n';
+                    sources.forEach(s => {
+                        response += `📄 **${s.name}**\n${generateSummary(s.text)}\n\n`;
+                        citedNames.push(s.name);
+                    });
+                }
+                // === RELATIONSHIPS ===
+                else if (ql.includes('relación') || ql.includes('relacion') || ql.includes('comparar') || ql.includes('común')) {
+                    const allTokenSets = sources.map(s => new Set(tokenize(s.text)));
+                    let common = [];
+                    for (let i = 0; i < allTokenSets.length; i++) {
+                        for (let j = i + 1; j < allTokenSets.length; j++) {
+                            const shared = [...allTokenSets[i]].filter(t => allTokenSets[j].has(t) && t.length > 4);
+                            if (shared.length) common.push({ a: sources[i].name, b: sources[j].name, words: shared.slice(0, 10) });
                         }
                     }
+                    if (common.length) {
+                        response = 'He encontrado estas relaciones entre tus fuentes:\n\n';
+                        common.forEach(c => { response += `• "${c.a}" y "${c.b}" comparten conceptos: ${c.words.join(', ')}.\n`; });
+                        citedNames = sources.map(s => s.name);
+                    } else {
+                        response = 'No he encontrado temas comunes evidentes entre tus fuentes. Parecen tratar temas diferentes.';
+                        citedNames = sources.map(s => s.name);
+                    }
                 }
-            }
-            chat.scrollTop = chat.scrollHeight;
+                // === CONCLUSIONS ===
+                else if (ql.includes('conclusi')) {
+                    response = 'Conclusiones basadas en tus fuentes:\n\n';
+                    sources.forEach(s => {
+                        const sents = extractSentences(s.text);
+                        const last = sents.slice(-2).join(' ');
+                        response += `📄 ${s.name}: ${last}\n\n`;
+                        citedNames.push(s.name);
+                    });
+                }
+                // === SINGLE SOURCE SUMMARY ===
+                else if (ql.includes('resume') || ql.includes('resumen') || ql.includes('explica') || ql.includes('puntos clave')) {
+                    let target = sources.find(s => ql.includes(s.name.toLowerCase().split('.')[0]) || ql.includes(s.name.toLowerCase()));
+                    if (!target) target = sources[0];
+                    response = generateSummary(target.text, 5);
+                    citedNames.push(target.name);
+                }
+                // === SEMANTIC SEARCH ===
+                else {
+                    const queryTokens = tokenize(q);
+                    let allHits = [];
+
+                    sources.forEach(s => {
+                        const sentences = extractSentences(s.text);
+                        sentences.forEach(sent => {
+                            const score = scoreSentence(sent, queryTokens);
+                            if (score > 0.3) allHits.push({ sent, src: s.name, score });
+                        });
+                    });
+
+                    allHits.sort((a, b) => b.score - a.score);
+
+                    if (allHits.length) {
+                        const top = allHits.slice(0, 5);
+                        citedNames = [...new Set(top.map(h => h.src))];
+                        response = top.map(h => h.sent).join('. ') + '.';
+                    } else {
+                        // Fallback: show most relevant fragments via broader matching
+                        response = 'No he encontrado coincidencias directas. Aquí tienes un extracto de cada fuente que podría ser relevante:\n\n';
+                        sources.forEach(s => {
+                            response += `📄 ${s.name}: ${s.text.substring(0, 200)}...\n\n`;
+                            citedNames.push(s.name);
+                        });
+                    }
+                }
+
+                const citeHTML = citedNames.length ? `<div class="cites">${[...new Set(citedNames)].map(n => `<span class="cite">📄 ${n}</span>`).join('')}</div>` : '';
+                chat.innerHTML += `<div class="msg a">${citeHTML}${response}</div>`;
+                chat.scrollTop = chat.scrollHeight;
+            }, 500);
         }
 
-        function sysMsg(t) {
+        function sys(t) {
             const c = document.getElementById('chat');
             c.innerHTML += `<div style="text-align:center;font-size:.78rem;color:#94a3b8;font-style:italic">IA: ${t}</div>`;
             c.scrollTop = c.scrollHeight;
