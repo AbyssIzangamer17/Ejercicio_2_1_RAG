@@ -18,6 +18,7 @@
             margin: 0;
             display: flex;
             height: 100vh;
+            overflow: hidden;
         }
 
         .sidebar {
@@ -25,21 +26,31 @@
             background: var(--sidebar);
             border-right: 1px solid #ddd;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         .sidebar h2 {
             font-size: 0.8rem;
             color: #5f6368;
             text-transform: uppercase;
+            margin-bottom: 20px;
         }
 
         .doc {
             background: white;
             border: 1px solid #ddd;
             border-radius: 8px;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 10px;
             font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .doc:hover {
+            border-color: var(--accent);
+            background: #f8f9fa;
         }
 
         .content {
@@ -47,40 +58,52 @@
             padding: 40px 100px;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .chat {
             flex: 1;
             overflow-y: auto;
+            padding-bottom: 50px;
         }
 
         .msg {
             margin-bottom: 25px;
             line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .user {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #202124;
+            margin-top: 30px;
         }
 
         .ai {
             color: #3c4043;
             border-left: 3px solid var(--accent);
-            padding-left: 15px;
+            padding-left: 20px;
         }
 
         .tag {
             background: #e8f0fe;
             color: var(--accent);
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            padding: 2px 6px;
+            padding: 2px 8px;
             border-radius: 4px;
-            margin-right: 5px;
+            margin-bottom: 8px;
+            display: inline-block;
         }
 
         .input-box {
             background: #f1f3f4;
-            border-radius: 25px;
-            padding: 10px 20px;
+            border-radius: 28px;
+            padding: 10px 24px;
             display: flex;
             align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         input {
@@ -88,8 +111,9 @@
             background: transparent;
             border: none;
             outline: none;
-            padding: 10px;
+            padding: 12px 0;
             font-size: 1rem;
+            color: #202124;
         }
 
         button {
@@ -97,47 +121,97 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .summary-btn {
+            margin-top: auto;
+            background: white;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .summary-btn:hover {
+            background: #e8f0fe;
         }
     </style>
 </head>
 
 <body>
     <div class="sidebar">
-        <h2>Fuentes Indexadas</h2>
-        <div class="doc">📄 Manual_Motor_M101.pdf</div>
-        <div class="doc">📄 Protocolo_K1.docx</div>
-        <div class="doc">📄 Guia_TIA_Portal.pdf</div>
+        <h2>Fuentes del Proyecto</h2>
+        <div class="doc" onclick="summarize('motor')">📄 Manual_Motor_M101.pdf</div>
+        <div class="doc" onclick="summarize('protocolo')">📄 Protocolo_Seguridad_K1.docx</div>
+        <div class="doc" onclick="summarize('guia')">📄 Guia_Config_Siemens.pdf</div>
+        <button class="summary-btn" onclick="globalSummary()">Generar Resumen Global</button>
     </div>
     <div class="content">
         <div class="chat" id="chat">
-            <div class="msg ai">Soy tu asistente de investigación industrial. He analizado tus manuales. ¿Qué quieres
-                consultar?</div>
+            <div class="msg ai">
+                <span class="tag">AGENTE RAG</span><br>
+                Hola Izan. He analizado con éxito tus manuales técnicos. Estoy listo para responder consultas basadas
+                únicamente en tus documentos de automatización. ¿Qué necesitas investigar hoy?
+            </div>
         </div>
         <div class="input-box">
-            <input type="text" id="q" placeholder="Escribe tu consulta sobre mantenimiento o seguridad..."
+            <input type="text" id="q" placeholder="Pregunta sobre mantenimiento, IP del PLC, errores..."
                 onkeydown="if(event.key==='Enter') runRAG()">
             <button onclick="runRAG()">→</button>
         </div>
     </div>
     <script>
-        const kb = { "mantenimiento": "Cada 5000h (Manual M101)", "k1": "Relé de seguridad critico (Protocolo K1)", "ip": "192.168.0.1 (Guia TIA Portal)" };
+        const kb = {
+            "mantenimiento": { t: "El mantenimiento del motor M101 es cada 5000h de operación.", s: "Manual_Motor_M101.pdf" },
+            "k1": { t: "El protocolo K1 es crítico para paradas industriales seguras.", s: "Protocolo_Seguridad_K1.docx" },
+            "ip": { t: "IP asignada: 192.168.0.1 (Subred 255.255.255.0).", s: "Guia_Config_Siemens.pdf" },
+            "f01": { t: "F01 detectado: Sobrecarga térmica. Revisar ventilador 02.", s: "Manual_Motor_M101.pdf" }
+        };
+
         function runRAG() {
             const i = document.getElementById('q');
             const c = document.getElementById('chat');
-            const val = i.value.toLowerCase();
+            const val = i.value.trim();
             if (!val) return;
-            c.innerHTML += `<div class="msg"><b>Tú:</b> ${i.value}</div>`;
+
+            c.innerHTML += `<div class="msg user">${i.value}</div>`;
+
             setTimeout(() => {
-                let r = "No hay datos exactos en las fuentes.";
-                let s = "";
-                for (let k in kb) if (val.includes(k)) { r = kb[k]; s = `<span class="tag">FUENTE: ${k.toUpperCase()}</span><br>`; }
-                c.innerHTML += `<div class="msg ai">${s}${r}</div>`;
+                let response = "No encuentro información específica sobre eso en los manuales cargados.";
+                let source = "Búsqueda General";
+                for (let k in kb) {
+                    if (val.toLowerCase().includes(k)) {
+                        response = kb[k].t;
+                        source = kb[k].s;
+                        break;
+                    }
+                }
+                c.innerHTML += `<div class="msg ai"><span class="tag">FUENTE: ${source}</span><br>${response}</div>`;
                 c.scrollTop = c.scrollHeight;
-            }, 500);
+            }, 600);
             i.value = '';
+        }
+
+        function summarize(type) {
+            document.getElementById('q').value = `Resumen de ${type}`;
+            runRAG();
+        }
+
+        function globalSummary() {
+            const h = document.getElementById('chat');
+            h.innerHTML += `<div class="msg ai"><span class="tag">RESUMEN GLOBAL</span><br>Tu planta industrial cuenta con un motor M101 con mantenimiento cada 5000h y un PLC Siemens configurado en la red 192.168.0.1. El protocolo de seguridad K1 está activo y verificado.</div>`;
+            h.scrollTop = h.scrollHeight;
         }
     </script>
 </body>
