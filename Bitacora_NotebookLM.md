@@ -121,19 +121,37 @@ La investigación debe cubrir:
 
 ---
 
-### Resumen de Funcionalidades
+#### Prompt #8
+**Prompt:** "Actualiza el Python de Rag y los sincroniza con el formato HTML. Quiero que sea capaz de todo lo que dice, de ser un NotebookLM en todo su esplendor pero de forma LOCAL."
+
+**Para qué sirve:** Se actualizó completamente rag_prototype.py para que sea idéntico en funcionalidades a research_notebook.html:
+- Sistema de gestión de fuentes (añadir/eliminar documentos)
+- Integración real con Pollinations AI (sin simulación)
+- Memoria de conversación (últimas 6 interacciones)
+- Citas automáticas de fuentes en respuestas
+- Acciones rápidas (resumen global, relaciones, guía de estudio, FAQ, conclusiones)
+- Interfaz de terminal mejorada con menús interactivos
+- Compatible 100% con el HTML - mismo motor de IA
+
+**Corrección:** No — Este prompt fue para sincronizar Python con HTML y añadir modo local.
+
+---
+
+### Resumen de Funcionalidades (Versión Python + HTML Sincronizadas)
 
 | Funcionalidad | Descripción |
 |--------------|-------------|
-| Gestión de Fuentes | Añadir y eliminar fuentes dinámicamente |
-| Chat con IA | Consultas sobre documentos cargados |
+| Gestión de Fuentes | Añadir y eliminar fuentes dinámicamente (Python CLI + HTML) |
+| Chat con IA | Consultas sobre documentos cargados (Pollinations AI real) |
 | Citas Automáticas | Indica el documento fuente de cada respuesta |
 | Memoria de Conversación | Mantiene contexto de las últimas 6 interacciones |
 | Resumen Global | Resume todas las fuentes conjuntamente |
 | Guía de Estudio | Genera contenido educativo |
 | FAQ | Crea preguntas y respuestas automáticas |
 | Relaciones | Encuentra conexiones entre documentos |
-| Pollinations AI | Motor de IA sin API key |
+| Pollinations AI | Motor de IA sin API key (mismo en Python y HTML) |
+| Modo Local Python | Interfaz de terminal completa, funcional sin navegador |
+| Interfaz HTML | Versión web con UI idéntica a NotebookLM real |
 
 ---
 

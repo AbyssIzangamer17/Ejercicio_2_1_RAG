@@ -73,7 +73,14 @@ Recrear la experiencia de **Google NotebookLM** en un entorno web independiente,
 
 ## 🚀 Inicio Rápido
 
-### Opción 1: Abrir directamente
+### Opción 1: Versión Python (Terminal - Recomendado para uso local)
+```
+# Requiere Python 3.7+ y la biblioteca requests
+pip install requests
+python rag_prototype.py
+```
+
+### Opción 2: Versión HTML (Navegador)
 ```
 Abrir research_notebook.html en cualquier navegador moderno
 ```
@@ -106,18 +113,25 @@ cd Ejercicio_2_1_RAG
 
 ```
 Ejercicio_2_1_RAG/
-├── research_notebook.html   # Aplicación principal (interfaz + IA)
-└── README.md                # Este archivo
+├── research_notebook.html   # Aplicación web (interfaz + IA - versión navegador)
+├── rag_prototype.py        # Versión Python (terminal - 100% funcional)
+├── Bitacora_NotebookLM.md # Bitácora de desarrollo
+└── README.md               # Este archivo
 ```
 
 ---
 
 ## ⚙️ Requisitos
 
+### Versión Python (Terminal):
+- **Python 3.7+** instalado
+- **Biblioteca requests**: `pip install requests`
+- Conexión a internet para Pollinations AI
+
+### Versión HTML (Navegador):
 - **Navegador moderno**: Chrome, Firefox, Edge o Safari (versión reciente).
-- **Conexión a internet**: Necesaria para las consultas a Pollinations AI.
-- **Sin instalación**: No requiere Node.js, Python ni ningún backend.
-- **Sin API key**: Funciona directamente, sin registro ni configuración.
+- Conexión a internet para Pollinations AI.
+- Sin instalación: No requiere Node.js ni backend.
 
 ---
 
