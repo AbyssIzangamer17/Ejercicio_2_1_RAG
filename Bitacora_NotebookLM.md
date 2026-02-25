@@ -137,11 +137,71 @@ La investigación debe cubrir:
 
 ---
 
-### Resumen de Funcionalidades (Versión Python + HTML Sincronizadas)
+#### Prompt #9
+**Prompt:** "Mejora su aspecto en HTML, quiero un toque de colores negro y rojizo."
+
+**Para qué sirve:** Se rediseñó completamente la interfaz HTML con un tema oscuro profesional:
+- Fondo principal #0d0d0d (negro profundo)
+- Sidebar y tarjetas en tonos gris oscuro (#1a1a1a, #1e1e1e)
+- Color de acento principal #e63946 (rojo brillante)
+- Gradientes sutiles con tinte rojizo en el fondo
+- Efectos glow rojo en hover y elementos activos
+- Scrollbars personalizadas
+- Mensajes de chat con tarjetas oscuras y bordes sutiles
+- Botón de envío con gradiente rojo y sombra
+
+**Corrección:** No — Este prompt fue para mejorar el diseño visual.
+
+---
+
+#### Prompt #10
+**Prompt:** "Perfecto, el Rag ya funciona, Ahora quiero que sepa guardar mis fuentes para que si yo me salgo al volver entrar siga ahí. También quiero poder tener diversos cuadernos para tener diversas conversaciones que no tengan nada que ver entre si como si fuera un historial de conversaciones."
+
+**Para qué sirve:** Se implementó un sistema completo de persistencia y múltiples cuadernos:
+- **Persistencia local (localStorage):** Todas las fuentes y conversaciones se guardan automáticamente
+- **Múltiples cuadernos:** Cada cuaderno tiene sus propias fuentes y conversación independiente
+- **Panel de cuadernos:** Interfaz lateral para gestionar cuadernos
+- **Crear/renombrar/eliminar cuadernos:** Funcionalidad completa de CRUD
+- **Cambio rápido:** Se puede cambiar entre cuadernos instantáneamente
+- **Título dinámico:** El nombre del cuaderno actual aparece en el header
+- **Metadatos:** Cada cuaderno muestra número de fuentes, mensajes y fecha de creación
+
+**Corrección:** No — Este prompt fue para añadir nuevas funcionalidades de persistencia y organización.
+
+---
+
+#### Prompt #11
+**Prompt:** "Mejora el formato y arregla las cosas que no funcionan como el boton de nuevo cuaderno, También la vista del HTML se ve rara no está bien alineada arreglalo."
+
+**Para qué sirve:** Se corrigieron bugs y problemas de diseño:
+- Arreglado el botón "Nuevo Cuaderno" que no funcionaba
+- Corregida la alineación del layout con contenedor flexbox
+- Reorganizado el header del sidebar
+- Mejorada la experiencia de usuario general
+
+**Corrección:** Sí — Este prompt corrigió bugs de funcionamiento.
+
+---
+
+#### Prompt #12
+**Prompt:** "Quiero que se vea más visible lo de los cuadrenos, si no pasa desapercibido por lo demás es genial."
+
+**Para qué sirve:** Se hizo el botón de cuadernos mucho más visible:
+- Botón grande con gradiente rojo
+- Texto blanco "📚 Cuadernos"
+- Sombra glow rojiza
+- Efecto de escala en hover
+- Posicionado prominentemente en el header del sidebar
+
+**Corrección:** No — Este prompt fue para mejorar la visibilidad.
+
+---
+
+### Resumen de Funcionalidades (Versión Final v10)
 
 | Funcionalidad | Descripción |
 |--------------|-------------|
-| Gestión de Fuentes | Añadir y eliminar fuentes dinámicamente (Python CLI + HTML) |
+| Gestión de Fuentes | Añadir y eliminar fuentes dinámicamente |
 | Chat con IA | Consultas sobre documentos cargados (Pollinations AI real) |
 | Citas Automáticas | Indica el documento fuente de cada respuesta |
 | Memoria de Conversación | Mantiene contexto de las últimas 6 interacciones |
@@ -149,15 +209,26 @@ La investigación debe cubrir:
 | Guía de Estudio | Genera contenido educativo |
 | FAQ | Crea preguntas y respuestas automáticas |
 | Relaciones | Encuentra conexiones entre documentos |
-| Pollinations AI | Motor de IA sin API key (mismo en Python y HTML) |
-| Modo Local Python | Interfaz de terminal completa, funcional sin navegador |
-| Interfaz HTML | Versión web con UI idéntica a NotebookLM real |
+| Pollinations AI | Motor de IA sin API key |
+| Múltiples Cuadernos | Varios cuadernos con conversaciones independientes |
+| Persistencia Local | Fuentes y conversaciones se guardan automáticamente |
+| Tema Oscuro | Diseño negro y rojizo profesional |
+| Versión Python | Interfaz de terminal completa para uso local |
+| Versión HTML | Interfaz web con UI similar a NotebookLM |
 
 ---
 
 ### Conclusión
 
-NotebookLM Industrial se convirtió en una herramienta de investigación versátil y potente, capaz de funcionar con cualquier tipo de documento y tema. Permite cargar fuentes personalizadas, mantener contexto de conversación y generar contenido automáticamente.
+NotebookLM Industrial ha evolucionado hasta convertirse en una herramienta de investigación versátil y potente, capaz de funcionar con cualquier tipo de documento y tema. Sus características principales incluyen:
+
+- **Persistencia total:** Fuentes y conversaciones se mantienen al salir y volver a entrar
+- **Múltiples cuadernos:** Organiza diferentes proyectos o temas en cuadernos separados
+- **IA avanzada:** Integración con Pollinations AI para respuestas inteligentes con citas
+- **Diseño profesional:** Tema oscuro con acentos rojos, inspirado en el ámbito industrial
+- **Dualidad:** Disponible tanto en versión HTML (navegador) como Python (terminal)
+
+El sistema permite cargar cualquier documento, realizar consultas inteligentes, generar resúmenes, guías de estudio y contenido educativo, manteniendo siempre el contexto de la conversación y la trazabilidad de las fuentes utilizadas.
 
 ---
 

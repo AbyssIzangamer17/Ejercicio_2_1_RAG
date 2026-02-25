@@ -7,7 +7,7 @@
 
 > **Ejercicio 2.1** — Sistema RAG (Retrieval-Augmented Generation) inspirado en Google NotebookLM.
 
-NotebookLM Industrial es una herramienta de investigación que permite cargar cualquier documento de texto y realizar consultas inteligentes sobre su contenido. Utiliza **Pollinations AI** (OpenCode, 100% gratuito, sin necesidad de API key) para proporcionar inteligencia artificial real capaz de resumir, analizar, comparar y razonar sobre cualquier tema.
+NotebookLM Industrial v10.0 es una herramienta de investigación que permite cargar cualquier documento de texto y realizar consultas inteligentes sobre su contenido. Utiliza **Pollinations AI** (OpenCode, 100% gratuito, sin necesidad de API key) para proporcionar inteligencia artificial real capaz de resumir, analizar, comparar y razonar sobre cualquier tema.
 
 ---
 
@@ -21,6 +21,11 @@ Recrear la experiencia de **Google NotebookLM** en un entorno web independiente,
 ---
 
 ## 🚀 Características Principales
+
+### Novedades v10.0
+- **📚 Múltiples Cuadernos:** Crea diferentes cuadernos para distintos proyectos o temas
+- **💾 Persistencia Local:** Todo se guarda automáticamente - fuentes y conversaciones
+- **🎨 Tema Oscuro:** Diseño profesional negro y rojizo
 
 ### Motor de IA (Pollinations AI - OpenCode)
 - Integración con la API gratuita de **Pollinations AI** (`text.pollinations.ai/openai`).
