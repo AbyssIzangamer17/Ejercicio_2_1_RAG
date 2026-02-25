@@ -14,17 +14,35 @@ El proyecto consiste en crear una herramienta de investigación basada en IA sim
 
 **Fuente:** PDF de Instrucciones del Ejercicio (Captura 2026-02-24)
 
-**Prompt original:**
+**Contexto del ejercicio:**
+El Ejercicio 2.1 forma parte del bloque "Habilidades del Ecosistema IA" del módulo. Este ejercicio se enmarca dentro del contexto de investigación de herramientas de inteligencia artificial aplicadas al ámbito industrial.
+
+**Prompt original extraído del PDF:**
 > "Exercici 2.1. Recerca RAG. Investigar sobre els sistemes RAG per a manuals industrials."
 
-Este prompt establece la investigación sobre sistemas RAG aplicados a manuales industriales como objetivo del ejercicio.
+**Interpretación y desarrollo:**
+Este prompt establece como objetivo la investigación sobre sistemas RAG (Retrieval Augmented Generation) aplicados a manuales industriales. Los sistemas RAG combinan la recuperación de información con generación de texto, permitiendo que los modelos de IA respondan preguntas basándose en documentos específicos sin necesidad de reentrenamiento.
+
+En el contexto industrial, esto es especialmente útil para:
+- Consultar manuales de mantenimiento sin conocer el documento exacto
+- Extraer información de procedimientos operativos (SOPs)
+- Resolver dudas sobre configuraciones de equipos
+- Crear bases de conocimiento consultables mediante lenguaje natural
+
+La investigación debe cubrir:
+- Fundamentos teóricos de RAG
+- Arquitecturas de embedding y recuperación
+- Aplicaciones prácticas en entornos industriales
+- Integración con sistemas existentes
+
+**Nota del desarrollo:** El sistema final implementa una versión funcional de NotebookLM industrial que permite cargar cualquier documento y realizar consultas inteligentes sobre su contenido, con capacidad de citar las fuentes exactas de cada respuesta.
 
 ---
 
 ### Prompts Utilizados
 
 #### Prompt #1
-**Prompt:** "El ejercicio de RAG tiene que funcionar como si fuera un NotebookLM. No tal y como lo has planteado."
+**Prompt:** "El ejercicio de RAG tiene que funcionar como si fuera un NotebookLM. No tal y como lo has plantea
 
 **Para qué sirve:** Se rediseñó completamente la interfaz para emulate NotebookLM: panel de fuentes lateral, área de chat central, citas en tiempo real con etiquetas azules indicando el documento fuente, e interfaz minimalista inspirada en Google Research.
 
