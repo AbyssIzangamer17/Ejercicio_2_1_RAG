@@ -1,0 +1,324 @@
+<h1 id="bitácora-de-desarrollo-notebooklm-industrial">Bitácora de
+Desarrollo: NotebookLM Industrial</h1>
+<h2
+id="ejercicio-2.1-sistema-rag-de-investigación-asistida-por-ia">Ejercicio
+2.1 — Sistema RAG de Investigación Asistida por IA</h2>
+<hr />
+<h3 id="descripción-del-proyecto">Descripción del Proyecto</h3>
+<p>El proyecto consiste en crear una herramienta de investigación basada
+en IA similar a Google NotebookLM. Permite cargar documentos de texto de
+cualquier tipo y realizar consultas inteligentes sobre su contenido.
+Utiliza Pollinations AI para proporcionar inteligencia artificial sin
+necesidad de API key.</p>
+<hr />
+<h3 id="prompt-de-origen-contexto-general">Prompt de Origen (Contexto
+General)</h3>
+<p><strong>Fuente:</strong> Conversación inicial del proyecto -
+Antigravity</p>
+<p><strong>Prompt principal del proyecto:</strong> &gt; “Usa la skill
+<span class="citation" data-cites="find-skills">@find-skills</span> para
+explorar tu ecosistema de 60.000 herramientas y seleccionar, en cada
+paso, la habilidad más avanzada y adecuada para cumplir este flujo de
+trabajo: &gt; Extracción Multimodal: Busca y ejecuta la mejor
+herramienta de OCR y visión artificial para analizar la imagen/PDF
+dentro de la carpeta ‘PDF DE EJERCICIOS’ y extraer las instrucciones de
+texto. &gt; Deducción de Objetivos: Si el texto extraído es impreciso o
+incompleto, busca una skill de agentes autónomos o planificación
+estratégica capaz de comprender el contexto, deducir el objetivo final
+del trabajo y ‘apañárselas’ de forma independiente para descomponer la
+meta en tareas ejecutables. &gt; Documentación Académica: Localiza la
+skill de creación de documentos más robusta que garantice compatibilidad
+total con LibreOffice. El documento final debe seguir un estilo
+académico riguroso. &gt; Estilización y Pie de Página: Identifica una
+herramienta de diseño de temas o estilización para configurar un pie de
+página obligatorio con el texto: ‘Documento realizado por Izan Urios de
+3R de Automatización y Robótica industrial’. Es indispensable que este
+pie de página incluya un borde superior nítido que lo separe visualmente
+del cuerpo del documento. &gt; Ejecuta todo el proceso de forma
+autónoma, priorizando la precisión técnica y el rigor en el formato
+final. &gt; Ve poco a poco y ve diferenciando los ejercicios de forma
+estructurada y organizada. Haz una carpeta por cada uno y trabaja
+adecuadamente siendo ordenado.”</p>
+<p><strong>Interpretación:</strong> Este prompt establece el flujo de
+trabajo completo del proyecto. Se buscaba utilizar el ecosistema de
+habilidades de IA para procesar las instrucciones del PDF y generar una
+solución organizada y profesional para cada ejercicio.</p>
+<hr />
+<h3 id="prompt-de-origen-ejercicio-específico">Prompt de Origen
+(Ejercicio Específico)</h3>
+<p><strong>Fuente:</strong> PDF de Instrucciones del Ejercicio (Captura
+2026-02-24)</p>
+<p><strong>Contexto del ejercicio:</strong> El Ejercicio 2.1 forma parte
+del bloque “Habilidades del Ecosistema IA” del módulo. Este ejercicio se
+enmarca dentro del contexto de investigación de herramientas de
+inteligencia artificial aplicadas al ámbito industrial.</p>
+<p><strong>Prompt original extraído del PDF:</strong> &gt; “Exercici
+2.1. Recerca RAG. Investigar sobre els sistemes RAG per a manuals
+industrials.”</p>
+<p><strong>Interpretación y desarrollo:</strong> Este prompt establece
+como objetivo la investigación sobre sistemas RAG (Retrieval Augmented
+Generation) aplicados a manuales industriales. Los sistemas RAG combinan
+la recuperación de información con generación de texto, permitiendo que
+los modelos de IA respondan preguntas basándose en documentos
+específicos sin necesidad de reentrenamiento.</p>
+<p>En el contexto industrial, esto es especialmente útil para: -
+Consultar manuales de mantenimiento sin conocer el documento exacto -
+Extraer información de procedimientos operativos (SOPs) - Resolver dudas
+sobre configuraciones de equipos - Crear bases de conocimiento
+consultables mediante lenguaje natural</p>
+<p>La investigación debe cubrir: - Fundamentos teóricos de RAG -
+Arquitecturas de embedding y recuperación - Aplicaciones prácticas en
+entornos industriales - Integración con sistemas existentes</p>
+<p><strong>Nota del desarrollo:</strong> El sistema final implementa una
+versión funcional de NotebookLM industrial que permite cargar cualquier
+documento y realizar consultas inteligentes sobre su contenido, con
+capacidad de citar las fuentes exactas de cada respuesta.</p>
+<hr />
+<h3 id="prompts-utilizados">Prompts Utilizados</h3>
+<h4 id="prompt-1">Prompt #1</h4>
+<p><strong>Prompt:</strong> “El ejercicio de RAG tiene que funcionar
+como si fuera un NotebookLM. No tal y como lo has planta</p>
+<p><strong>Para qué sirve:</strong> Se rediseñó completamente la
+interfaz para emulate NotebookLM: panel de fuentes lateral, área de chat
+central, citas en tiempo real con etiquetas azules indicando el
+documento fuente, e interfaz minimalista inspirada en Google
+Research.</p>
+<p><strong>Corrección:</strong> Sí — Se utilizó para corregir el enfoque
+inicial del RAG que no funcionaba como NotebookLM.</p>
+<hr />
+<h4 id="prompt-2">Prompt #2</h4>
+<p><strong>Prompt:</strong> “Tienes que separar los ejercicios, una HTML
+por cada uno y que sean diferentes.”</p>
+<p><strong>Para qué sirve:</strong> Se separó el RAG en su propio
+archivo research_notebook.html con identidad visual única dentro del
+Ejercicio 2.1.</p>
+<p><strong>Corrección:</strong> No — Este prompt fue para organizar la
+estructura del proyecto.</p>
+<hr />
+<h4 id="prompt-3">Prompt #3</h4>
+<p><strong>Prompt:</strong> “El RAG no deja subir fuentes y no tiene la
+capacidad de IA para poder interpretar cosas que no tenga
+definidas.”</p>
+<p><strong>Para qué sirve:</strong> Se implementó la gestión de fuentes:
+botón “+ Añadir fuente” para pegar texto de cualquier documento, sistema
+de eliminación de fuentes, y metadatos por fuente (conteo de
+palabras).</p>
+<p><strong>Corrección:</strong> Sí — Se utilizó para corregir la falta
+de gestión de fuentes y capacidades de IA.</p>
+<hr />
+<h4 id="prompt-4">Prompt #4</h4>
+<p><strong>Prompt:</strong> “El RAG no tiene ningún tipo de libre
+albedrío, está centrado en un proyecto y yo quiero usarlo para lo que me
+dé la gana.”</p>
+<p><strong>Para qué sirve:</strong> Se eliminaron los datos
+predefinidos. El sistema ahora empieza vacío y el usuario puede pegar
+cualquier texto (apuntes, manuales, artículos). La IA busca en todas las
+fuentes pegadas usando coincidencia de frases y funciona con cualquier
+tema.</p>
+<p><strong>Corrección:</strong> Sí — Se utilizó para corregir la
+limitación del sistema a un solo tema predefinido.</p>
+<hr />
+<h4 id="prompt-5">Prompt #5</h4>
+<p><strong>Prompt:</strong> “Del RAG no es capaz de hacer resúmenes
+globales o de interpretar preguntas fuera de lugar, añádele un asistente
+IA para que pueda usarlo en muchos ámbitos.”</p>
+<p><strong>Para qué sirve:</strong> Se añadieron capacidades avanzadas
+de IA: chip “Resumen global” para resumir todas las fuentes
+conjuntamente, chip “Relaciones” para encontrar conexiones entre
+documentos, chip “Guía de estudio” para generar contenido educativo,
+chip “FAQ” para crear preguntas frecuentes, y chip “Conclusiones” para
+extraer conclusiones principales.</p>
+<p><strong>Corrección:</strong> Sí — Se utilizó para corregir la falta
+de capacidades de IA avanzada y resúmenes globales.</p>
+<hr />
+<h4 id="prompt-6">Prompt #6</h4>
+<p><strong>Prompt:</strong> “El Rag que funcione con OpenCode sin API
+alguna, mejóralo.”</p>
+<p><strong>Para qué sirve:</strong> Se integró Pollinations AI (URL:
+https://text.pollinations.ai/openai) que acepta peticiones
+OpenAI-compatibles sin autenticación. Es un motor gratuito sin necesidad
+de API key.</p>
+<p><strong>Corrección:</strong> No — Este prompt fue para añadir una
+nueva funcionalidad.</p>
+<hr />
+<h4 id="prompt-7">Prompt #7</h4>
+<p><strong>Prompt:</strong> “Del RAG sigue sin funcionar como
+NotebookLM, no tiene capacidades de IA, ni de fuentes ni nada.
+Arreglado.”</p>
+<p><strong>Para qué sirve:</strong> Se implementó NotebookLM v9 con
+características completas: memoria de conversación (últimas 6
+interacciones), renderizado markdown en respuestas, UI refinada más
+similar a NotebookLM real, metadatos por fuente, y spinner animado
+durante procesamiento.</p>
+<p><strong>Corrección:</strong> Sí — Este prompt se usó para corregir
+múltiples deficiencias anteriores y unificar todas las mejoras en una
+versión cohesiva.</p>
+<hr />
+<h4 id="prompt-8">Prompt #8</h4>
+<p><strong>Prompt:</strong> “Actualiza el Python de Rag y los sincroniza
+con el formato HTML. Quiero que sea capaz de todo lo que dice, de ser un
+NotebookLM en todo su esplendor pero de forma LOCAL.”</p>
+<p><strong>Para qué sirve:</strong> Se actualizó completamente
+rag_prototype.py para que sea idéntico en funcionalidades a
+research_notebook.html: - Sistema de gestión de fuentes (añadir/eliminar
+documentos) - Integración real con Pollinations AI (sin simulación) -
+Memoria de conversación (últimas 6 interacciones) - Citas automáticas de
+fuentes en respuestas - Acciones rápidas (resumen global, relaciones,
+guía de estudio, FAQ, conclusiones) - Interfaz de terminal mejorada con
+menús interactivos - Compatible 100% con el HTML - mismo motor de IA</p>
+<p><strong>Corrección:</strong> No — Este prompt fue para sincronizar
+Python con HTML y añadir modo local.</p>
+<hr />
+<h4 id="prompt-9">Prompt #9</h4>
+<p><strong>Prompt:</strong> “Mejora su aspecto en HTML, quiero un toque
+de colores negro y rojizo.”</p>
+<p><strong>Para qué sirve:</strong> Se rediseñó completamente la
+interfaz HTML con un tema oscuro profesional: - Fondo principal #0d0d0d
+(negro profundo) - Sidebar y tarjetas en tonos gris oscuro (#1a1a1a,
+#1e1e1e) - Color de acento principal #e63946 (rojo brillante) -
+Gradientes sutiles con tinte rojizo en el fondo - Efectos glow rojo en
+hover y elementos activos - Scrollbars personalizadas - Mensajes de chat
+con tarjetas oscuras y bordes sutiles - Botón de envío con gradiente
+rojo y sombra</p>
+<p><strong>Corrección:</strong> No — Este prompt fue para mejorar el
+diseño visual.</p>
+<hr />
+<h4 id="prompt-10">Prompt #10</h4>
+<p><strong>Prompt:</strong> “Perfecto, el Rag ya funciona, Ahora quiero
+que sepa guardar mis fuentes para que si yo me salgo al volver entrar
+siga ahí. También quiero poder tener diversos cuadernos para tener
+diversas conversaciones que no tengan nada que ver entre si como si
+fuera un historial de conversaciones.”</p>
+<p><strong>Para qué sirve:</strong> Se implementó un sistema completo de
+persistencia y múltiples cuadernos: - <strong>Persistencia local
+(localStorage):</strong> Todas las fuentes y conversaciones se guardan
+automáticamente - <strong>Múltiples cuadernos:</strong> Cada cuaderno
+tiene sus propias fuentes y conversación independiente - <strong>Panel
+de cuadernos:</strong> Interfaz lateral para gestionar cuadernos -
+<strong>Crear/renombrar/eliminar cuadernos:</strong> Funcionalidad
+completa de CRUD - <strong>Cambio rápido:</strong> Se puede cambiar
+entre cuadernos instantáneamente - <strong>Título dinámico:</strong> El
+nombre del cuaderno actual aparece en el header -
+<strong>Metadatos:</strong> Cada cuaderno muestra número de fuentes,
+mensajes y fecha de creación</p>
+<p><strong>Corrección:</strong> No — Este prompt fue para añadir nuevas
+funcionalidades de persistencia y organización.</p>
+<hr />
+<h4 id="prompt-11">Prompt #11</h4>
+<p><strong>Prompt:</strong> “Mejora el formato y arregla las cosas que
+no funcionan como el boton de nuevo cuaderno, También la vista del HTML
+se ve rara no está bien alineada arreglalo.”</p>
+<p><strong>Para qué sirve:</strong> Se corrigieron bugs y problemas de
+diseño: - Arreglado el botón “Nuevo Cuaderno” que no funcionaba -
+Corregida la alineación del layout con contenedor flexbox - Reorganizado
+el header del sidebar - Mejorada la experiencia de usuario general</p>
+<p><strong>Corrección:</strong> Sí — Este prompt corrigió bugs de
+funcionamiento.</p>
+<hr />
+<h4 id="prompt-12">Prompt #12</h4>
+<p><strong>Prompt:</strong> “Quiero que se vea más visible lo de los
+cuadrenos, si no pasa desapercibido por lo demás es genial.”</p>
+<p><strong>Para qué sirve:</strong> Se hizo el botón de cuadernos mucho
+más visible: - Botón grande con gradiente rojo - Texto blanco “📚
+Cuadernos” - Sombra glow rojiza - Efecto de escala en hover -
+Posicionado prominentemente en el header del sidebar</p>
+<p><strong>Corrección:</strong> No — Este prompt fue para mejorar la
+visibilidad.</p>
+<hr />
+<h3 id="resumen-de-funcionalidades-versión-final-v10">Resumen de
+Funcionalidades (Versión Final v10)</h3>
+<table>
+<colgroup>
+<col style="width: 51%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr>
+<th>Funcionalidad</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gestión de Fuentes</td>
+<td>Añadir y eliminar fuentes dinámicamente</td>
+</tr>
+<tr>
+<td>Chat con IA</td>
+<td>Consultas sobre documentos cargados (Pollinations AI real)</td>
+</tr>
+<tr>
+<td>Citas Automáticas</td>
+<td>Indica el documento fuente de cada respuesta</td>
+</tr>
+<tr>
+<td>Memoria de Conversación</td>
+<td>Mantiene contexto de las últimas 6 interacciones</td>
+</tr>
+<tr>
+<td>Resumen Global</td>
+<td>Resume todas las fuentes conjuntamente</td>
+</tr>
+<tr>
+<td>Guía de Estudio</td>
+<td>Genera contenido educativo</td>
+</tr>
+<tr>
+<td>FAQ</td>
+<td>Crea preguntas y respuestas automáticas</td>
+</tr>
+<tr>
+<td>Relaciones</td>
+<td>Encuentra conexiones entre documentos</td>
+</tr>
+<tr>
+<td>Pollinations AI</td>
+<td>Motor de IA sin API key</td>
+</tr>
+<tr>
+<td>Múltiples Cuadernos</td>
+<td>Varios cuadernos con conversaciones independientes</td>
+</tr>
+<tr>
+<td>Persistencia Local</td>
+<td>Fuentes y conversaciones se guardan automáticamente</td>
+</tr>
+<tr>
+<td>Tema Oscuro</td>
+<td>Diseño negro y rojizo profesional</td>
+</tr>
+<tr>
+<td>Versión Python</td>
+<td>Interfaz de terminal completa para uso local</td>
+</tr>
+<tr>
+<td>Versión HTML</td>
+<td>Interfaz web con UI similar a NotebookLM</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="conclusión">Conclusión</h3>
+<p>NotebookLM Industrial ha evolucionado hasta convertirse en una
+herramienta de investigación versátil y potente, capaz de funcionar con
+cualquier tipo de documento y tema. Sus características principales
+incluyen:</p>
+<ul>
+<li><strong>Persistencia total:</strong> Fuentes y conversaciones se
+mantienen al salir y volver a entrar</li>
+<li><strong>Múltiples cuadernos:</strong> Organiza diferentes proyectos
+o temas en cuadernos separados</li>
+<li><strong>IA avanzada:</strong> Integración con Pollinations AI para
+respuestas inteligentes con citas</li>
+<li><strong>Diseño profesional:</strong> Tema oscuro con acentos rojos,
+inspirado en el ámbito industrial</li>
+<li><strong>Dualidad:</strong> Disponible tanto en versión HTML
+(navegador) como Python (terminal)</li>
+</ul>
+<p>El sistema permite cargar cualquier documento, realizar consultas
+inteligentes, generar resúmenes, guías de estudio y contenido educativo,
+manteniendo siempre el contexto de la conversación y la trazabilidad de
+las fuentes utilizadas.</p>
+<hr />
+<p><em>Documento realizado por Izan Urios — 3R de Automatización y
+Robótica Industrial</em></p>
