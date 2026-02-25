@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>NotebookLM | AI Research Assistant</title>
+    <title>MindCore | AI Research Assistant</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap"
         rel="stylesheet">
@@ -723,10 +723,10 @@
                 </div>
             </div>
             <div class="sb-footer">
-                <span style="color: var(--accent); font-weight: 600;">◆</span> NotebookLM Industrial v10.0<br>
-                Motor: Pollinations AI (OpenCode, gratis)<br>
-                Persistencia local · Múltiples cuadernos<br>
-                Izan Urios · 3R Automatización
+            <span style="color: var(--accent); font-weight: 600;">◆</span> MindCore Industrial v10.0<br>
+            Motor: Pollinations AI (OpenCode, gratis)<br>
+            Persistencia local · Múltiples cuadernos<br>
+            Izan Urios · 3R Automatización
             </div>
         </div>
 
@@ -765,8 +765,8 @@
 
     <script>
         // ===== NOTEBOOKS & PERSISTENCE =====
-        const STORAGE_KEY = 'notebooklm_notebooks';
-        const ACTIVE_KEY = 'notebooklm_active';
+        const STORAGE_KEY = 'mindcore_notebooks';
+        const ACTIVE_KEY = 'mindcore_active';
         
         let notebooks = [];
         let activeNotebookId = null;
@@ -1055,7 +1055,7 @@ Puedes añadir cualquier tipo de documento a la izquierda pegando su contenido (
                 `[DOCUMENTO: "${s.name}"]\n${s.text}`
             ).join('\n\n===\n\n');
 
-            const systemPrompt = `Eres un asistente de investigación avanzado, similar a NotebookLM de Google. Tu trabajo es ayudar al usuario a entender, analizar y trabajar con sus documentos.
+            const systemPrompt = `Eres un asistente de investigación avanzado, similar a MindCore Industrial. Tu trabajo es ayudar al usuario a entender, analizar y trabajar con sus documentos.
 
 ${sources.length > 0 ? `DOCUMENTOS DEL USUARIO (${sources.length} fuentes cargadas):\n\n${sourceContext}` : 'El usuario no tiene documentos cargados todavía.'}
 

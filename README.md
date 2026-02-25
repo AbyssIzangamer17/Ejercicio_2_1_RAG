@@ -1,19 +1,19 @@
-# 🧠 NotebookLM Industrial — Asistente de Investigación con IA
+# MindCore Industrial — Asistente de Investigación con IA
 
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/es/docs/Web/HTML)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/es/docs/Web/JavaScript)
 [![Pollinations AI](https://img.shields.io/badge/AI-Pollinations%20OpenCode-blueviolet)](https://pollinations.ai/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-> **Ejercicio 2.1** — Sistema RAG (Retrieval-Augmented Generation) inspirado en Google NotebookLM.
+> **Ejercicio 2.1** — Sistema RAG (Retrieval-Augmented Generation) de investigación asistida por IA.
 
-NotebookLM Industrial v10.0 es una herramienta de investigación que permite cargar cualquier documento de texto y realizar consultas inteligentes sobre su contenido. Utiliza **Pollinations AI** (OpenCode, 100% gratuito, sin necesidad de API key) para proporcionar inteligencia artificial real capaz de resumir, analizar, comparar y razonar sobre cualquier tema.
+MindCore Industrial v10.0 es una herramienta de investigación que permite cargar cualquier documento de texto y realizar consultas inteligentes sobre su contenido. Utiliza **Pollinations AI** (OpenCode, 100% gratuito, sin necesidad de API key) para proporcionar inteligencia artificial real capaz de resumir, analizar, comparar y razonar sobre cualquier tema.
 
 ---
 
 ## 🎯 Objetivo del Proyecto
 
-Recrear la experiencia de **Google NotebookLM** en un entorno web independiente, proporcionando a estudiantes e ingenieros una herramienta de investigación con IA que:
+Recrear la experiencia de un asistente de investigación con IA en un entorno independiente, proporcionando a estudiantes e ingenieros una herramienta de investigación con IA que:
 - Permita trabajar con **cualquier tipo de texto** (apuntes, manuales, artículos, normativas).
 - Ofrezca razonamiento real mediante IA generativa.
 - No requiera instalación, cuenta o clave de API.

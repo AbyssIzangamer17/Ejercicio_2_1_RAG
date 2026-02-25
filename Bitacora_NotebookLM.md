@@ -1,4 +1,4 @@
-# Bitácora de Desarrollo: NotebookLM Industrial
+# Bitácora de Desarrollo: MindCore Industrial
 
 ## Ejercicio 2.1 — Sistema RAG de Investigación Asistida por IA
 
@@ -6,7 +6,7 @@
 
 ### Descripción del Proyecto
 
-El proyecto consiste en crear una herramienta de investigación basada en IA similar a Google NotebookLM. Permite cargar documentos de texto de cualquier tipo y realizar consultas inteligentes sobre su contenido. Utiliza Pollinations AI para proporcionar inteligencia artificial sin necesidad de API key.
+El proyecto consiste en crear una herramienta de investigación basada en IA llamada MindCore Industrial. Permite cargar documentos de texto de cualquier tipo y realizar consultas inteligentes sobre su contenido. Utiliza Pollinations AI para proporcionar inteligencia artificial sin necesidad de API key.
 
 ---
 
@@ -52,16 +52,16 @@ La investigación debe cubrir:
 - Aplicaciones prácticas en entornos industriales
 - Integración con sistemas existentes
 
-**Nota del desarrollo:** El sistema final implementa una versión funcional de NotebookLM industrial que permite cargar cualquier documento y realizar consultas inteligentes sobre su contenido, con capacidad de citar las fuentes exactas de cada respuesta.
+**Nota del desarrollo:** El sistema final implementa una versión funcional de MindCore Industrial que permite cargar cualquier documento y realizar consultas inteligentes sobre su contenido, con capacidad de citar las fuentes exactas de cada respuesta.
 
 ---
 
 ### Prompts Utilizados
 
 #### Prompt #1
-**Prompt:** "El ejercicio de RAG tiene que funcionar como si fuera un NotebookLM. No tal y como lo has planta
+**Prompt:** "El ejercicio de RAG tiene que funcionar como si fuera un NotebookLM..."
 
-**Para qué sirve:** Se rediseñó completamente la interfaz para emulate NotebookLM: panel de fuentes lateral, área de chat central, citas en tiempo real con etiquetas azules indicando el documento fuente, e interfaz minimalista inspirada en Google Research.
+**Para qué sirve:** Se rediseñó completamente la interfaz para emulate MindCore Industrial (antes NotebookLM): panel de fuentes lateral, área de chat central, citas en tiempo real con etiquetas azules indicando el documento fuente, e interfaz minimalista inspirada en Google Research.
 
 **Corrección:** Sí — Se utilizó para corregir el enfoque inicial del RAG que no funcionaba como NotebookLM.
 

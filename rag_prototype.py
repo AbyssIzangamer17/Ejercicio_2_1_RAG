@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NotebookLM Industrial - Python Edition
+MindCore Industrial - Python Edition
 Sistema RAG de Investigación Asistida por IA
 ==========================================
 Compatible con research_notebook.html - Funcionalidades sincronizadas
@@ -36,7 +36,7 @@ class NotebookLM_Industrial:
     def print_header(self):
         self.clear_screen()
         print("=" * 70)
-        print("📔 NOTEBOOKLM INDUSTRIAL - Python Edition v9.0")
+        print("🔮 MINDCORE INDUSTRIAL - Python Edition v10.0")
         print("   Motor: Pollinations AI (Sin API Key)")
         print("   Autor: Izan Urios · 3R Automatización")
         print("=" * 70)
@@ -292,7 +292,7 @@ Nota: El usuario tiene {len(self.sources)} documento(s) cargado(s). Utilízalos 
     def show_welcome(self):
         self.print_header()
         print("""
-📌 BIENVENIDO A NOTEBOOKLM INDUSTRIAL - Python Edition
+📌 BIENVENIDO A MINDCORE INDUSTRIAL - Python Edition
    
 Esta herramienta te permite:
    
@@ -328,6 +328,10 @@ Esta herramienta te permite:
                 choice = input("\n🎯 Selecciona una opción: ").strip()
             except (EOFError, KeyboardInterrupt):
                 print("\n\n👋 ¡Hasta luego!")
+                break
+
+            if choice.lower() in ["salir", "exit", "quit", "q"]:
+                print("\n👋 ¡Hasta luego! Gracias por usar MindCore Industrial.")
                 break
 
             if choice.lower() in ["salir", "exit", "quit", "q"]:
