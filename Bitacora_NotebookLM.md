@@ -10,6 +10,17 @@ El proyecto consiste en crear una herramienta de investigación basada en IA sim
 
 ---
 
+### Prompt de Origen
+
+**Fuente:** PDF de Instrucciones del Ejercicio (Captura 2026-02-24)
+
+**Prompt original:**
+> "Exercici 2.1. Recerca RAG. Investigar sobre els sistemes RAG per a manuals industrials."
+
+Este prompt establece la investigación sobre sistemas RAG aplicados a manuales industriales como objetivo del ejercicio.
+
+---
+
 ### Prompts Utilizados
 
 #### Prompt #1
