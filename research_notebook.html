@@ -9,13 +9,16 @@
         rel="stylesheet">
     <style>
         :root {
-            --accent: #1a73e8;
-            --bg: #fff;
-            --sb: #f8f9fa;
-            --bd: #dadce0;
-            --t1: #202124;
-            --t2: #5f6368;
-            --blue2: #1967d2
+            --accent: #e63946;
+            --accent-dark: #c1121f;
+            --bg: #0d0d0d;
+            --sb: #1a1a1a;
+            --sb-hover: #252525;
+            --bd: #333333;
+            --t1: #f8f9fa;
+            --t2: #a0a0a0;
+            --blue2: #e63946;
+            --card-bg: #1e1e1e;
         }
 
         * {
@@ -28,7 +31,10 @@
             display: flex;
             height: 100vh;
             color: var(--t1);
-            background: var(--bg)
+            background: var(--bg);
+            background-image: 
+                radial-gradient(ellipse at top left, rgba(230, 57, 70, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(230, 57, 70, 0.05) 0%, transparent 50%);
         }
 
         /* === SIDEBAR === */
@@ -38,7 +44,8 @@
             border-right: 1px solid var(--bd);
             display: flex;
             flex-direction: column;
-            flex-shrink: 0
+            flex-shrink: 0;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5)
         }
 
         .sb-head {
@@ -46,18 +53,27 @@
             border-bottom: 1px solid var(--bd);
             display: flex;
             align-items: center;
-            justify-content: space-between
+            justify-content: space-between;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%)
         }
 
         .sb-head h2 {
             font-family: 'Google Sans';
             font-size: 1.1rem;
-            font-weight: 500
+            font-weight: 600;
+            color: var(--t1);
+            text-transform: uppercase;
+            letter-spacing: 1px
+        }
+
+        .sb-head h2::before {
+            content: '◆ ';
+            color: var(--accent)
         }
 
         .sb-cnt {
             font-size: .72rem;
-            color: var(--t2)
+            color: var(--accent)
         }
 
         .sb-scroll {
@@ -66,8 +82,25 @@
             padding: 8px 10px
         }
 
+        .sb-scroll::-webkit-scrollbar {
+            width: 6px
+        }
+
+        .sb-scroll::-webkit-scrollbar-track {
+            background: var(--sb)
+        }
+
+        .sb-scroll::-webkit-scrollbar-thumb {
+            background: var(--bd);
+            border-radius: 3px
+        }
+
+        .sb-scroll::-webkit-scrollbar-thumb:hover {
+            background: var(--accent)
+        }
+
         .src {
-            background: #fff;
+            background: var(--card-bg);
             border: 1px solid var(--bd);
             border-radius: 12px;
             padding: 12px 14px;
@@ -82,12 +115,14 @@
 
         .src:hover {
             border-color: var(--accent);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, .06)
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.3), 0 4px 15px rgba(0, 0, 0, 0.3);
+            transform: translateX(4px)
         }
 
         .src-icon {
             font-size: 1.3rem;
-            flex-shrink: 0
+            flex-shrink: 0;
+            color: var(--accent)
         }
 
         .src-body {
@@ -96,8 +131,9 @@
         }
 
         .src-name {
-            font-weight: 500;
+            font-weight: 600;
             font-size: .88rem;
+            color: var(--t1);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis
@@ -105,7 +141,7 @@
 
         .src-meta {
             font-size: .7rem;
-            color: var(--t2);
+            color: var(--accent);
             margin-top: 2px
         }
 
@@ -126,7 +162,7 @@
             right: 8px;
             background: none;
             border: none;
-            color: #c4c7c5;
+            color: #555;
             cursor: pointer;
             font-size: 1.1rem;
             border-radius: 50%;
@@ -139,8 +175,8 @@
         }
 
         .src-del:hover {
-            background: #fce8e6;
-            color: #d93025
+            background: rgba(230, 57, 70, 0.2);
+            color: var(--accent)
         }
 
         .sb-actions {
@@ -151,11 +187,11 @@
         .add-btn {
             width: 100%;
             padding: 12px;
-            border: 2px dashed #c4c7c5;
+            border: 2px dashed var(--bd);
             border-radius: 12px;
             background: transparent;
             color: var(--accent);
-            font-weight: 500;
+            font-weight: 600;
             font-size: .88rem;
             cursor: pointer;
             transition: .2s;
@@ -166,7 +202,7 @@
         }
 
         .add-btn:hover {
-            background: #e8f0fe;
+            background: rgba(230, 57, 70, 0.1);
             border-style: solid;
             border-color: var(--accent)
         }
@@ -185,12 +221,15 @@
             font-size: .85rem;
             outline: none;
             font-family: inherit;
-            transition: .2s
+            transition: .2s;
+            background: var(--card-bg);
+            color: var(--t1)
         }
 
         .paste-area input:focus,
         .paste-area textarea:focus {
-            border-color: var(--accent)
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(230, 57, 70, 0.2)
         }
 
         .paste-area textarea {
@@ -221,8 +260,9 @@
             padding: 12px 16px;
             text-align: center;
             font-size: .68rem;
-            color: #9aa0a6;
-            border-top: 1px solid var(--bd)
+            color: var(--t2);
+            border-top: 1px solid var(--bd);
+            background: linear-gradient(0deg, #0d0d0d 0%, #1a1a1a 100%)
         }
 
         /* === WORKSPACE === */
@@ -241,17 +281,19 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-shrink: 0
+            flex-shrink: 0;
+            background: linear-gradient(90deg, #0d0d0d 0%, #1a1a1a 50%, #0d0d0d 100%)
         }
 
         .ws-title {
             font-family: 'Google Sans';
             font-size: 1.05rem;
-            font-weight: 400
+            font-weight: 500;
+            color: var(--t1)
         }
 
         .ws-badge {
-            color: #10b981;
+            color: var(--accent);
             font-size: .78rem;
             font-weight: 500;
             display: flex;
@@ -263,9 +305,10 @@
             content: '';
             width: 6px;
             height: 6px;
-            background: #10b981;
+            background: var(--accent);
             border-radius: 50%;
-            display: block
+            display: block;
+            box-shadow: 0 0 10px var(--accent)
         }
 
         /* Chat */
@@ -301,20 +344,21 @@
             font-family: 'Google Sans';
             font-weight: 500;
             font-size: 1.3rem;
-            color: #1e293b;
+            color: var(--t1);
             padding-top: 20px;
-            border-top: 1px solid #f1f3f4
+            border-top: 1px solid var(--bd)
         }
 
         .ai-msg {
-            background: #f8fafc;
+            background: var(--card-bg);
             padding: 24px 28px;
             border-radius: 20px;
-            border: 1px solid #e8eaed;
-            color: #3c4043;
+            border: 1px solid var(--bd);
+            color: var(--t1);
             font-size: .98rem;
             white-space: pre-wrap;
-            position: relative
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3)
         }
 
         .citations {
@@ -325,15 +369,16 @@
         }
 
         .cite-tag {
-            background: #e8f0fe;
-            color: var(--blue2);
+            background: rgba(230, 57, 70, 0.15);
+            color: var(--accent);
             font-size: .7rem;
             font-weight: 600;
             padding: 3px 10px;
             border-radius: 6px;
             display: flex;
             align-items: center;
-            gap: 4px
+            gap: 4px;
+            border: 1px solid rgba(230, 57, 70, 0.3)
         }
 
         .thinking-msg {
@@ -382,32 +427,33 @@
         }
 
         .chip {
-            background: #fff;
+            background: var(--card-bg);
             border: 1px solid var(--bd);
             padding: 9px 18px;
             border-radius: 22px;
             font-size: .84rem;
             cursor: pointer;
             white-space: nowrap;
-            color: #3c4043;
+            color: var(--t1);
             transition: .2s;
             font-weight: 500;
             flex-shrink: 0
         }
 
         .chip:hover {
-            background: #f1f3f4;
+            background: rgba(230, 57, 70, 0.15);
             border-color: var(--accent);
             color: var(--accent)
         }
 
         .input-bar {
-            background: #f1f3f4;
+            background: var(--card-bg);
             border-radius: 28px;
             padding: 6px 6px 6px 20px;
             display: flex;
             align-items: center;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, .06)
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+            border: 1px solid var(--bd)
         }
 
         .input-bar input {
@@ -421,11 +467,11 @@
         }
 
         .input-bar input::placeholder {
-            color: #9aa0a6
+            color: var(--t2)
         }
 
         .send-btn {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
             color: #fff;
             border: none;
             width: 42px;
@@ -437,11 +483,13 @@
             align-items: center;
             justify-content: center;
             transition: .2s;
-            flex-shrink: 0
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4)
         }
 
         .send-btn:hover {
-            background: var(--blue2)
+            background: linear-gradient(135deg, var(--accent-dark) 0%, #a80f18 100%);
+            transform: scale(1.05)
         }
     </style>
 </head>
@@ -464,7 +512,7 @@
             </div>
         </div>
         <div class="sb-footer">
-            NotebookLM Industrial v9.0<br>
+            <span style="color: var(--accent); font-weight: 600;">◆</span> NotebookLM Industrial v9.0<br>
             Motor: Pollinations AI (OpenCode, gratis)<br>
             Izan Urios · 3R Automatización
         </div>
