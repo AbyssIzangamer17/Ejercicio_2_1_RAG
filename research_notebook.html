@@ -37,6 +37,14 @@
                 radial-gradient(ellipse at bottom right, rgba(230, 57, 70, 0.05) 0%, transparent 50%);
         }
 
+        /* === MAIN CONTAINER === */
+        .main-container {
+            display: flex;
+            flex: 1;
+            height: 100vh;
+            overflow: hidden
+        }
+
         /* === SIDEBAR === */
         .sidebar {
             width: 340px;
@@ -45,26 +53,26 @@
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
-            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
-            margin-left: 80px
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5)
         }
 
         .sb-head {
-            padding: 20px 16px;
+            padding: 16px;
             border-bottom: 1px solid var(--bd);
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 10px;
             background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%)
         }
 
         .sb-head h2 {
             font-family: 'Google Sans';
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             color: var(--t1);
             text-transform: uppercase;
-            letter-spacing: 1px
+            letter-spacing: 1px;
+            flex: 1
         }
 
         .sb-head h2::before {
@@ -605,26 +613,21 @@
         }
 
         .notebooks-toggle {
-            position: absolute;
-            left: 12px;
-            top: 12px;
-            background: var(--card-bg);
-            border: 1px solid var(--bd);
-            color: var(--t1);
-            padding: 8px 14px;
-            border-radius: 8px;
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            padding: 6px 10px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: .85rem;
+            font-size: 1.1rem;
+            transition: .2s;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: .2s;
-            z-index: 50
+            justify-content: center
         }
 
         .notebooks-toggle:hover {
-            border-color: var(--accent);
-            color: var(--accent)
+            background: rgba(230, 57, 70, 0.15)
         }
 
         .np-overlay {
@@ -656,64 +659,66 @@
         <div class="np-actions">
             <button class="new-notebook-btn" onclick="createNewNotebook()">+ Nuevo Cuaderno</button>
         </div>
+        </div>
     </div>
 
-    <button class="notebooks-toggle" onclick="toggleNotebooksPanel()">
-        <span>📚</span> Cuadernos
-    </button>
-
-    <div class="sidebar">
-        <div class="sb-head">
-            <h2>Fuentes</h2>
-            <span class="sb-cnt" id="srcCount">0 fuentes</span>
-        </div>
-        <div class="sb-scroll" id="srcList"></div>
-        <div class="sb-actions">
-            <button class="add-btn" onclick="togglePaste()">
-                <span style="font-size:1.1rem">+</span> Añadir fuente
-            </button>
-            <div class="paste-area" id="pasteArea">
-                <input type="text" id="srcNameInput" placeholder="Nombre del documento (ej: Manual_PLC.pdf)">
-                <textarea id="srcTextInput" placeholder="Pega aquí el contenido completo del documento..."></textarea>
-                <button class="submit-btn" onclick="addSource()">Analizar y Añadir</button>
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="sb-head">
+                <button class="notebooks-toggle" onclick="toggleNotebooksPanel()">
+                    <span>📚</span>
+                </button>
+                <h2>Fuentes</h2>
+                <span class="sb-cnt" id="srcCount">0 fuentes</span>
+            </div>
+            <div class="sb-scroll" id="srcList"></div>
+            <div class="sb-actions">
+                <button class="add-btn" onclick="togglePaste()">
+                    <span style="font-size:1.1rem">+</span> Añadir fuente
+                </button>
+                <div class="paste-area" id="pasteArea">
+                    <input type="text" id="srcNameInput" placeholder="Nombre del documento (ej: Manual_PLC.pdf)">
+                    <textarea id="srcTextInput" placeholder="Pega aquí el contenido completo del documento..."></textarea>
+                    <button class="submit-btn" onclick="addSource()">Analizar y Añadir</button>
+                </div>
+            </div>
+            <div class="sb-footer">
+                <span style="color: var(--accent); font-weight: 600;">◆</span> NotebookLM Industrial v10.0<br>
+                Motor: Pollinations AI (OpenCode, gratis)<br>
+                Persistencia local · Múltiples cuadernos<br>
+                Izan Urios · 3R Automatización
             </div>
         </div>
-        <div class="sb-footer">
-            <span style="color: var(--accent); font-weight: 600;">◆</span> NotebookLM Industrial v10.0<br>
-            Motor: Pollinations AI (OpenCode, gratis)<br>
-            Persistencia local · Múltiples cuadernos<br>
-            Izan Urios · 3R Automatización
-        </div>
-    </div>
 
-    <div class="workspace">
-        <div class="ws-header">
-            <div class="ws-title" id="notebookTitle">Libreta de Investigación</div>
-            <div class="ws-badge">IA OpenCode conectada</div>
-        </div>
+        <div class="workspace">
+            <div class="ws-header">
+                <div class="ws-title" id="notebookTitle">Libreta de Investigación</div>
+                <div class="ws-badge">IA OpenCode conectada</div>
+            </div>
 
-        <div class="chat" id="chatArea">
-            <div class="msg ai-msg">Bienvenido a tu libreta de investigación con inteligencia artificial.
+            <div class="chat" id="chatArea">
+                <div class="msg ai-msg">Bienvenido a tu libreta de investigación con inteligencia artificial.
 
-                Puedes añadir cualquier tipo de documento a la izquierda pegando su contenido (apuntes, manuales,
-                artículos, lo que quieras). Una vez tengas fuentes cargadas, puedo:
+                    Puedes añadir cualquier tipo de documento a la izquierda pegando su contenido (apuntes, manuales,
+                    artículos, lo que quieras). Una vez tengas fuentes cargadas, puedo:
 
-                • Resumir documentos individualmente o en conjunto
-                • Encontrar relaciones y patrones entre fuentes
-                • Responder preguntas específicas con citas
-                • Generar guías de estudio y preguntas frecuentes
-                • Extraer conclusiones y puntos clave
-                • Responder preguntas generales aunque no estén en las fuentes
+                    • Resumir documentos individualmente o en conjunto
+                    • Encontrar relaciones y patrones entre fuentes
+                    • Responder preguntas específicas con citas
+                    • Generar guías de estudio y preguntas frecuentes
+                    • Extraer conclusiones y puntos clave
+                    • Responder preguntas generales aunque no estén en las fuentes
 
-                ¡Empieza añadiendo tu primer documento!</div>
-        </div>
+                    ¡Empieza añadiendo tu primer documento!</div>
+            </div>
 
-        <div class="float-panel">
-            <div class="action-chips" id="chipBar"></div>
-            <div class="input-bar">
-                <input type="text" id="userInput" placeholder="Pregunta sobre tus documentos o cualquier tema..."
-                    onkeydown="if(event.key==='Enter')submitQuery()">
-                <button class="send-btn" onclick="submitQuery()">➤</button>
+            <div class="float-panel">
+                <div class="action-chips" id="chipBar"></div>
+                <div class="input-bar">
+                    <input type="text" id="userInput" placeholder="Pregunta sobre tus documentos o cualquier tema..."
+                        onkeydown="if(event.key==='Enter')submitQuery()">
+                    <button class="send-btn" onclick="submitQuery()">➤</button>
+                </div>
             </div>
         </div>
     </div>
@@ -754,6 +759,10 @@
         function saveNotebooks() {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(notebooks));
             localStorage.setItem(ACTIVE_KEY, activeNotebookId);
+        }
+
+        function createNewNotebook() {
+            createNotebook();
         }
 
         function createNotebook(name = null) {
