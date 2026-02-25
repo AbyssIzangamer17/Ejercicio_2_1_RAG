@@ -57,12 +57,53 @@
         }
 
         .sb-head {
-            padding: 16px;
+            padding: 14px 16px;
             border-bottom: 1px solid var(--bd);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%)
+        }
+
+        .sb-head h2 {
+            font-family: 'Google Sans';
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--t1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex: 1
+        }
+
+        .sb-head h2::before {
+            content: '◆ ';
+            color: var(--accent)
+        }
+
+        .sb-cnt {
+            font-size: .72rem;
+            color: var(--accent)
+        }
+
+        .notebooks-toggle {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border: none;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: .9rem;
+            font-weight: 600;
+            transition: .2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4)
+        }
+
+        .notebooks-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5)
         }
 
         .sb-head h2 {
@@ -666,9 +707,8 @@
         <div class="sidebar">
             <div class="sb-head">
                 <button class="notebooks-toggle" onclick="toggleNotebooksPanel()">
-                    <span>📚</span>
+                    <span>📚</span> Cuadernos
                 </button>
-                <h2>Fuentes</h2>
                 <span class="sb-cnt" id="srcCount">0 fuentes</span>
             </div>
             <div class="sb-scroll" id="srcList"></div>
